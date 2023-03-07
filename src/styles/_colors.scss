@@ -1,0 +1,9 @@
+// To use these variables in other scss file:
+// @use "colors" as colors;
+
+$background-color: #f3fcec;
+$primary: #00a6fb;
+$secondary: #003075;
+$outline: #cccccc;
+$text-light: $background-color;
+$text-dark: $secondary;

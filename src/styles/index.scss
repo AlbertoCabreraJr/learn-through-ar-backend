@@ -1,0 +1,16 @@
+@use 'colors' as colors;
+@use 'viewport';
+
+@use 'components/switch-to-mobile-message';
+
+html,
+body {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Nunito, sans-serif;
+  background-color: colors.$background-color;
+}
