@@ -1,0 +1,18 @@
+@use '../colors' as colors;
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .text {
+    color: #{colors.$text-dark};
+    font-weight: 700;
+    font-size: 14px;
+  }
+}

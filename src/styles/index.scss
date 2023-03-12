@@ -2,18 +2,16 @@
 @use 'viewport';
 
 @use 'components/switch-to-mobile-message';
+@use 'components/header';
 
 @use 'pages/not-found-page';
-@use 'pages/_signin-page';
+@use 'pages/signin-page';
+@use 'pages/home-page';
 
 html,
 body {
-  position: relative;
   padding: 0;
   margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
   font-family: Nunito, sans-serif;
   background-color: colors.$background-color;
 }

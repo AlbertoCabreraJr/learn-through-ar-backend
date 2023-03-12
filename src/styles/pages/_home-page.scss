@@ -1,0 +1,75 @@
+@use '../colors' as colors;
+
+.home-page {
+  padding: 20px;
+
+  .title {
+    padding: 20px 0px;
+    color: #{colors.$text-dark};
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .module-list {
+    .module-enabled {
+      background-color: #{colors.$primary};
+    }
+
+    .module-disabled {
+      background-color: #{colors.$outline};
+    }
+
+    .module {
+      height: 120px;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .module-title {
+        color: #{colors.$text-light};
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .module-subtitle {
+        color: #{colors.$text-light};
+        font-weight: 300;
+        font-size: 16px;
+      }
+
+      .module-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .module-progress {
+          color: #{colors.$text-light};
+        }
+
+        .module-button {
+          padding: 8px;
+          border-radius: 8px;
+          border: 0;
+          width: 100px;
+          font-weight: 500;
+        }
+
+        .button-unfinish {
+          background-color: #{colors.$background-color};
+          color: #{colors.$primary};
+        }
+
+        .button-finished {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          background-color: #{colors.$secondary};
+          color: #{colors.$text-light};
+        }
+      }
+    }
+  }
+}
