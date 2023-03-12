@@ -1,7 +1,7 @@
 import { user } from '../../utils/mockData'
 import check from '../../assets/check.svg'
 
-type Props = {
+type ModuleListItemProps = {
   module: any
 }
 
@@ -9,7 +9,7 @@ const shouldDisableModule = (module: any, user: any) => {
   return !module.finished && !user.finishedModules.includes(module._id) && user.currentModule !== module._id
 }
 
-const ModuleListItem: React.FC<Props> = ({ module }) => {
+const ModuleListItem: React.FC<ModuleListItemProps> = ({ module }) => {
   return (
     <div className={`module-list-item${shouldDisableModule(module, user) ? ' disabled' : ' enabled'}`}>
       <ModuleListItemHeader module={module} />

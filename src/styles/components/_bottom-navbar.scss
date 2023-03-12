@@ -1,0 +1,14 @@
+@use '../colors' as colors;
+
+.bottom-navbar {
+  background-color: #{colors.$background-color};
+  color: #{colors.$text-dark};
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #{colors.$outline};
+}
