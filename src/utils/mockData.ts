@@ -1,6 +1,7 @@
-export const user = {
-  name: 'Alberto Cabrera',
-  email: 'aacabrera2@up.edu.ph',
+export const course = {
+  _id: '001',
+  user: 'aacabrera2@up.edu.ph',
+  name: 'Programming Fundamentals',
   modules: [
     {
       _id: 1,
@@ -215,4 +216,10 @@ export const user = {
   currentModule: 2,
   currentTopic: 1,
   finishedModules: [1]
+}
+
+export const user = {
+  name: 'Alberto Cabrera',
+  email: 'aacabrera@up.edu.ph',
+  course: '001'
 }

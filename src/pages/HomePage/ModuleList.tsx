@@ -1,8 +1,8 @@
-import { user } from '../../utils/mockData'
+import { course } from '../../utils/mockData'
 import ModuleListItem from './ModuleListItem'
 
 const ModuleList = () => {
-  const { modules } = user
+  const { modules } = course
 
   return (
     <div className='module-list'>

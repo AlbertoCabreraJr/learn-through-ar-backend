@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import ProfileFilledIcon from '../assets/ProfileFilledIcon'
 import ProfileOutlinedIcon from '../assets/ProfileOutlinedIcon'

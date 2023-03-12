@@ -1,17 +1,17 @@
-import { user } from '../../utils/mockData'
+import { course } from '../../utils/mockData'
 import check from '../../assets/check.svg'
 
 type ModuleListItemProps = {
   module: any
 }
 
-const shouldDisableModule = (module: any, user: any) => {
-  return !module.finished && !user.finishedModules.includes(module._id) && user.currentModule !== module._id
+const shouldDisableModule = (module: any, course: any) => {
+  return !module.finished && !course.finishedModules.includes(module._id) && course.currentModule !== module._id
 }
 
 const ModuleListItem: React.FC<ModuleListItemProps> = ({ module }) => {
   return (
-    <div className={`module-list-item${shouldDisableModule(module, user) ? ' disabled' : ' enabled'}`}>
+    <div className={`module-list-item${shouldDisableModule(module, course) ? ' disabled' : ' enabled'}`}>
       <ModuleListItemHeader module={module} />
       <ModuleListItemFooter module={module} />
     </div>
@@ -37,7 +37,7 @@ const ModuleListItemFooter = ({ module }: { module: any }) => {
 }
 
 const ModuleListItemButton = ({ module }: { module: any }) => {
-  if (shouldDisableModule(module, user)) return null
+  if (shouldDisableModule(module, course)) return null
 
   return (
     <button className={`module-list-item-button${module.finished ? ' button-finished' : ' button-unfinish'}`}>
