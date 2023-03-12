@@ -10,7 +10,7 @@ const SignInPage = () => {
       </div>
       <button className='google-signin-button'>
         <img src={google} alt='Google logo' />
-        <div className='text'>Sign in with Google</div>
+        <div className='text'>Sign-in with google</div>
       </button>
     </div>
   )
