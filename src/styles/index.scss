@@ -6,7 +6,9 @@
 
 @use 'pages/not-found-page';
 @use 'pages/signin-page';
-@use 'pages/home-page';
+@use 'pages/home-page/home-page';
+@use 'pages/home-page/module-list';
+@use 'pages/home-page/module-list-item';
 
 html,
 body {

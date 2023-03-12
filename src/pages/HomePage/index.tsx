@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div className='home-page'>
       <Header />
-      <div className='title'>Programming Fundamentals</div>
+      <div className='home-page-title'>Programming Fundamentals</div>
       <ModuleList />
     </div>
   )
