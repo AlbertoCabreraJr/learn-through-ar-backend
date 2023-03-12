@@ -1,4 +1,4 @@
-.not-found-page-container {
+.not-found-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,15 +6,15 @@
   height: 100vh;
   gap: 20px;
   padding: 0 100px;
-}
 
-.not-found-page-text {
-  font-size: 24px;
-  text-align: center;
-  font-weight: 600;
-}
+  .text {
+    font-size: 24px;
+    text-align: center;
+    font-weight: 600;
+  }
 
-.not-found-page-logo {
-  width: 128px;
-  height: 128px;
+  .logo {
+    width: 128px;
+    height: 128px;
+  }
 }
