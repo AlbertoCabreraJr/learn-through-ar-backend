@@ -1,0 +1,27 @@
+@use '../../colors' as colors;
+
+.module-page {
+  .module-page-header {
+    padding: 20px;
+    background-color: #{colors.$primary};
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .module-title {
+      color: #{colors.$text-light};
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    .module-subtitle {
+      color: #{colors.$text-light};
+      font-weight: 300;
+      font-size: 18px;
+    }
+
+    .module-progress {
+      color: #{colors.$text-light};
+    }
+  }
+}

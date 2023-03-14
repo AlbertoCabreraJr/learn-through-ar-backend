@@ -1,5 +1,6 @@
 import { course } from '../../utils/mockData'
 import check from '../../assets/check.svg'
+import { useNavigate } from 'react-router-dom'
 
 type ModuleListItemProps = {
   module: any
@@ -37,10 +38,17 @@ const ModuleListItemFooter = ({ module }: { module: any }) => {
 }
 
 const ModuleListItemButton = ({ module }: { module: any }) => {
+  const navigate = useNavigate()
+
   if (shouldDisableModule(module, course)) return null
 
+  const handleClick = async (e: any) => {
+    e.preventDefault()
+    navigate(`/module/${module._id}`)
+  }
+
   return (
-    <button className={`module-list-item-button${module.finished ? ' button-finished' : ' button-unfinish'}`}>
+    <button className={`module-list-item-button${module.finished ? ' button-finished' : ' button-unfinish'}`} onClick={handleClick}>
       <div>{module.finished ? 'Review' : 'Continue'}</div>
       {module.finished && <img src={check} alt='Checkmark' />}
     </button>

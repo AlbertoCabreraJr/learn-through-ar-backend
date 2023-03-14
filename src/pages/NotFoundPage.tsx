@@ -1,5 +1,5 @@
 import logo from '../assets/logo.svg'
-import Layout from '../components/Layout'
+import Layout from '../components/LayoutWithNavigation'
 
 const NotFoundPage = () => {
   return (

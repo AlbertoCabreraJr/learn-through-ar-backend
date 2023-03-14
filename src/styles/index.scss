@@ -2,14 +2,18 @@
 @use 'viewport';
 
 @use 'components/switch-to-mobile-message';
-@use 'components/header';
+@use 'components/logo-with-text';
 @use 'components/bottom-navbar';
+@use 'components/layout-without-navigation';
+@use 'components/layout-with-navigation';
 
 @use 'pages/not-found-page';
 @use 'pages/signin-page';
 @use 'pages/home-page/home-page';
 @use 'pages/home-page/module-list';
 @use 'pages/home-page/module-list-item';
+@use 'pages/module-page/module-page';
+@use 'pages/module-page/topic-list';
 
 html,
 body {
