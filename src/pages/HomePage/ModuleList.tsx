@@ -7,7 +7,7 @@ const ModuleList = () => {
   return (
     <div className='module-list'>
       {modules.map((module) => {
-        return <ModuleListItem module={module} />
+        return <ModuleListItem key={module._id} module={module} />
       })}
     </div>
   )

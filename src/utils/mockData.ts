@@ -75,16 +75,34 @@ export const modules = [
     _id: 2,
     title: 'Module 2',
     subtitle: 'Data Types',
-    totalTopicsAndExam: 2,
+    totalTopicsAndExam: 5,
     topics: [
       {
         _id: 1,
         title: 'Data Types Introduction',
+        finished: true,
+        module: {}
+      },
+      {
+        _id: 2,
+        title: 'Data Types Introduction 2 ',
+        finished: false,
+        module: {}
+      },
+      {
+        _id: 3,
+        title: 'Data Types Introduction 3',
+        finished: false,
+        module: {}
+      },
+      {
+        _id: 4,
+        title: 'Data Types Introduction 4',
         finished: false,
         module: {}
       }
     ],
-    progress: 0,
+    progress: 1,
     exam: {
       title: 'Practice Assessment',
       module: {},
@@ -290,7 +308,7 @@ export const course = {
       _id: 2,
       title: 'Module 2',
       subtitle: 'Data Types',
-      totalTopicsAndExam: 2,
+      totalTopicsAndExam: 5,
       topics: [
         {
           _id: 1,
@@ -299,7 +317,7 @@ export const course = {
           module: {}
         }
       ],
-      progress: 0,
+      progress: 1,
       exam: {
         title: 'Practice Assessment',
         module: {},
@@ -425,8 +443,9 @@ export const course = {
   ],
 
   currentModule: 2,
-  currentTopic: 1,
-  finishedModules: [1]
+  currentTopic: 2,
+  finishedModules: [1],
+  finishedTopics: [1]
 }
 
 export const user = {

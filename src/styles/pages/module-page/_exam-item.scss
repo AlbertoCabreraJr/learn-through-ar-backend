@@ -1,0 +1,30 @@
+@use '../../colors' as colors;
+
+.exam-item {
+  padding: 20px;
+  margin: 0 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  border: 1px solid #{colors.$primary};
+  color: #{colors.$primary};
+  margin-bottom: 20px;
+}
+
+.exam-item-finished {
+  background-color: #{colors.$secondary};
+  color: #{colors.$text-light};
+}
+
+.exam-item-disabled {
+  background-color: #{colors.$background-color};
+  color: #{colors.$outline};
+  border: 1px solid #{colors.$outline};
+}
+
+.exam-item-chevron-right {
+  width: 14px;
+  height: 14px;
+}

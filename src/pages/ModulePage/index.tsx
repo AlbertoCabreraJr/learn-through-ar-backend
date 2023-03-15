@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
 import { modules } from '../../utils/mockData'
+import ExamItem from './ExamItem'
 import TopicList from './TopicList'
 
 const ModulePage = () => {
@@ -10,6 +11,8 @@ const ModulePage = () => {
 
   // temporary
   const module = modules[parseInt(id) - 1]
+
+  console.log('module', module)
 
   return (
     <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
@@ -24,6 +27,7 @@ const ModulePage = () => {
           </div>
         </div>
         <TopicList topics={module.topics} />
+        <ExamItem exam={module.exam} module={module} />
       </div>
     </LayoutWithoutNavigation>
   )
