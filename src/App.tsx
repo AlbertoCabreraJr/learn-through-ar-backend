@@ -9,9 +9,9 @@ import ModulePage from './pages/ModulePage'
 const App = () => {
   const { isDesktop } = useIsDesktop()
 
-  // if (isDesktop) {
-  //   return <SwitchToMobileMessage />
-  // }
+  if (isDesktop) {
+    return <SwitchToMobileMessage />
+  }
 
   return (
     <BrowserRouter>

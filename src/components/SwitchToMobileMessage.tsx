@@ -7,7 +7,8 @@ const SwitchToMobileMessage = () => {
     <div className='switch-to-mobile-message'>
       <img className='logo' src={logo} alt='Learn through AR logo' />
       <div className='text'>
-        For the best experience, please switch to our mobile version to fully utilize the AR capabilities of our web application. Thank you!
+        Welcome! To fully experience the AR capabilities of our web application, please access this web application
+        using your mobile device.
       </div>
     </div>
   )
