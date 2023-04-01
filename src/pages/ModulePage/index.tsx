@@ -12,8 +12,6 @@ const ModulePage = () => {
   // temporary
   const module = modules[parseInt(id) - 1]
 
-  console.log('module', module)
-
   return (
     <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
       <div className='module-page'>

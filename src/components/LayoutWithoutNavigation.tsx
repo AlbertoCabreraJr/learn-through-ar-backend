@@ -1,5 +1,7 @@
 import { ReactNode } from 'react'
+import { useNavigate } from 'react-router-dom'
 import back from '../assets/back.svg'
+import { useAuthContext } from '../context/AuthContext'
 import LogoWithText from './LogoWithText'
 
 type LayoutWithoutNavigationProps = {
@@ -8,6 +10,13 @@ type LayoutWithoutNavigationProps = {
 }
 
 const LayoutWithoutNavigation = ({ onClickBack, children }: LayoutWithoutNavigationProps) => {
+  const navigate = useNavigate()
+  const { userToken } = useAuthContext()
+
+  if (!userToken) {
+    navigate('/sign-in')
+  }
+
   return (
     <div className='layout-without-navigation'>
       <div className='layout-without-navigation-header'>

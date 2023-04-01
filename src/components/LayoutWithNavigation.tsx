@@ -1,4 +1,6 @@
 import React, { ReactNode } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../context/AuthContext'
 import BottomNavbar from './BottomNavbar'
 import LogoWithText from './LogoWithText'
 
@@ -7,6 +9,13 @@ type LayoutWithNavigationProps = {
 }
 
 const LayoutWithNavigation = ({ children }: LayoutWithNavigationProps) => {
+  const navigate = useNavigate()
+  const { userToken } = useAuthContext()
+
+  if (!userToken) {
+    navigate('/sign-in')
+  }
+
   return (
     <div className='layout-with-navigation'>
       <div className='layout-with-navigation-header'>

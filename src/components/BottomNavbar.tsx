@@ -8,7 +8,6 @@ const BottomNavbar = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  console.log(location.pathname)
   return (
     <div className='bottom-navbar'>
       <div className='home' onClick={() => navigate('/')}>
