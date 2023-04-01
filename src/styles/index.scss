@@ -6,6 +6,7 @@
 @use 'components/bottom-navbar';
 @use 'components/layout-without-navigation';
 @use 'components/layout-with-navigation';
+@use 'components/loader';
 
 @use 'pages/not-found-page';
 @use 'pages/signin-page';

@@ -2,10 +2,15 @@ import logo from '../assets/logo.svg'
 import google from '../assets/google.svg'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
+import Loader from '../components/Loader'
 
 const SignInPage = () => {
   const navigate = useNavigate()
-  const { signIn, userToken } = useAuthContext()
+  const { signIn, userToken, isLoading } = useAuthContext()
+
+  if (isLoading) {
+    return <Loader />
+  }
 
   if (userToken) {
     navigate('/')

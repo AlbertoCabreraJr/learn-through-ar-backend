@@ -7,6 +7,7 @@ import NotFoundPage from './pages/NotFoundPage'
 import ModulePage from './pages/ModulePage'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { AuthProvider } from './context/AuthContext'
+import Loader from './components/Loader'
 
 const App = () => {
   const { isDesktop } = useIsDesktop()

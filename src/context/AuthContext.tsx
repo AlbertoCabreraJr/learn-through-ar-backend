@@ -4,15 +4,12 @@ import { useGoogleLogin, googleLogout } from '@react-oauth/google'
 
 type AuthContextProps = {
   isLoading?: boolean
-  isSignout?: boolean
   userToken?: string | null
   signOut?: () => void
   signIn?: () => void
 }
 
 type AuthState = {
-  isLoading: boolean
-  isSignout: boolean
   userToken: string | null
 }
 
@@ -24,11 +21,12 @@ type Action = {
 const AuthContext = React.createContext<AuthContextProps>({})
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isLoading, setIsLoading] = React.useState(false)
   const [state, dispatch] = React.useReducer(
     (prevState: AuthState, action: Action) => {
       switch (action.type) {
         case 'RESTORE_TOKEN':
-          return { ...prevState, userToken: action.token, isLoading: false }
+          return { ...prevState, userToken: action.token }
         case 'SIGN_IN':
           return { ...prevState, isSignout: false, userToken: action.token }
         case 'SIGN_OUT':
@@ -38,8 +36,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
     },
     {
-      isLoading: true,
-      isSignout: false,
       userToken: null
     }
   )
@@ -56,10 +52,15 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.setItem('id_token', JSON.stringify(data.id_token))
 
       dispatch({ type: 'SIGN_IN', token: data.id_token })
+      setIsLoading(false)
     },
     onError: (error) => {
       console.error(error)
       dispatch({ type: 'SIGN_OUT', token: null })
+      setIsLoading(false)
+    },
+    onNonOAuthError: () => {
+      setIsLoading(false)
     },
     flow: 'auth-code',
     // @ts-ignore
@@ -98,8 +99,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const authValues = React.useMemo(
     () => ({
-      signIn: googleLogin,
+      signIn: () => {
+        setIsLoading(true)
+        googleLogin()
+      },
       signOut: async () => {
+        setIsLoading(true)
+
         const token = localStorage.getItem('id_token')
         if (token) {
           googleLogout()
@@ -108,6 +114,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
 
         dispatch({ type: 'SIGN_OUT', token: null })
+        setIsLoading(false)
       }
     }),
     [googleLogin]
@@ -118,7 +125,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return token.exp < currentTimeInSeconds
   }
 
-  return <AuthContext.Provider value={{ ...authValues, ...state }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ ...authValues, ...state, isLoading }}>{children}</AuthContext.Provider>
 }
 
 const useAuthContext = () => React.useContext(AuthContext)
