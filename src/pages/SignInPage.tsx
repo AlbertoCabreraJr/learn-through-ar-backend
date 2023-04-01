@@ -3,17 +3,20 @@ import google from '../assets/google.svg'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
 import Loader from '../components/Loader'
+import { useEffect } from 'react'
 
 const SignInPage = () => {
   const navigate = useNavigate()
   const { signIn, userToken, isLoading } = useAuthContext()
 
+  useEffect(() => {
+    if (userToken) {
+      navigate('/')
+    }
+  }, [userToken, isLoading])
+
   if (isLoading) {
     return <Loader />
-  }
-
-  if (userToken) {
-    navigate('/')
   }
 
   return (
