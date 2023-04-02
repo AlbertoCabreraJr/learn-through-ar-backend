@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
 import Loader from '../components/Loader'
 import { useEffect } from 'react'
+import { useUserContext } from '../context/UserContext'
 
 const SignInPage = () => {
   const navigate = useNavigate()
   const { signIn, userToken, isLoading } = useAuthContext()
+  const { user } = useUserContext()
 
   useEffect(() => {
-    if (userToken) {
-      navigate('/')
+    if (userToken && user) {
+      navigate(`/course/${user.course}`)
     }
-  }, [userToken, isLoading])
+  }, [userToken, isLoading, navigate, user])
 
   if (isLoading) {
     return <Loader />

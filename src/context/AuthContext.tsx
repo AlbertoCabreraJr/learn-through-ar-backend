@@ -50,6 +50,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       localStorage.setItem('aws', JSON.stringify(data.awsCredentials))
       localStorage.setItem('id_token', JSON.stringify(data.id_token))
+      localStorage.setItem('user', JSON.stringify(data.user))
 
       dispatch({ type: 'SIGN_IN', token: data.id_token })
       setIsLoading(false)
@@ -111,6 +112,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           googleLogout()
           localStorage.removeItem('id_token')
           localStorage.removeItem('aws')
+          localStorage.removeItem('user')
         }
 
         dispatch({ type: 'SIGN_OUT', token: null })

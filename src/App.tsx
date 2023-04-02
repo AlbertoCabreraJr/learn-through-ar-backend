@@ -1,5 +1,4 @@
 import SwitchToMobileMessage from './components/SwitchToMobileMessage'
-import { useIsDesktop } from './hooks/useIsDesktop'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SignInPage from './pages/SignInPage'
 import HomePage from './pages/HomePage'
@@ -7,7 +6,8 @@ import NotFoundPage from './pages/NotFoundPage'
 import ModulePage from './pages/ModulePage'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { AuthProvider } from './context/AuthContext'
-import Loader from './components/Loader'
+import { UserProvider } from './context/UserContext'
+import useIsDesktop from './hooks/useIsDesktop'
 
 const App = () => {
   const { isDesktop } = useIsDesktop()
@@ -19,14 +19,16 @@ const App = () => {
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}>
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/sign-in' element={<SignInPage />}></Route>
-            <Route path='*' element={<NotFoundPage />}></Route>
-            <Route path='/' element={<HomePage />}></Route>
-            <Route path='/module/:id' element={<ModulePage />}></Route>
-          </Routes>
-        </BrowserRouter>
+        <UserProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/sign-in' element={<SignInPage />}></Route>
+              <Route path='*' element={<NotFoundPage />}></Route>
+              <Route path='/course/:id' element={<HomePage />}></Route>
+              <Route path='/module/:id' element={<ModulePage />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </UserProvider>
       </AuthProvider>
     </GoogleOAuthProvider>
   )
