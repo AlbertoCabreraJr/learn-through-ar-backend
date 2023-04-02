@@ -1,13 +1,15 @@
+import Topic from './Topic'
+
 type Module = {
   _id: string
-  moduleNumber: string
+  moduleNumber: number
   title: string
   subtitle: string
-  totalTopicsAndExam: string[]
-  topics: string
-  progress: string
-  exam: string[]
-  finished: string[]
+  totalTopicsAndExam: number
+  topics: Topic[]
+  progress: number
+  exam: string
+  finished: boolean
   createdAt: Date
   updatedAt: Date
 }

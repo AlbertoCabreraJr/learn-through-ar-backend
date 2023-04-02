@@ -9,6 +9,7 @@ import { AuthProvider } from './context/AuthContext'
 import { UserProvider } from './context/UserContext'
 import useIsDesktop from './hooks/useIsDesktop'
 import ErrorPage from './pages/ErrorPage'
+import TopicPage from './pages/TopicPage'
 
 const App = () => {
   const { isDesktop } = useIsDesktop()
@@ -26,8 +27,9 @@ const App = () => {
               <Route path='/sign-in' element={<SignInPage />}></Route>
               <Route path='/error' element={<ErrorPage />}></Route>
               <Route path='*' element={<NotFoundPage />}></Route>
-              <Route path='/course/:id' element={<HomePage />}></Route>
-              <Route path='/module/:id' element={<ModulePage />}></Route>
+              <Route path='/course/:courseId' element={<HomePage />}></Route>
+              <Route path='/course/:courseId/module/:moduleId' element={<ModulePage />}></Route>
+              <Route path='/course/:courseId/module/:moduleId/topic/:topicId' element={<TopicPage />}></Route>
             </Routes>
           </BrowserRouter>
         </UserProvider>

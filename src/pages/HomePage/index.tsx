@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom'
 import useCourse from '../../hooks/useCourse'
 
 const HomePage = () => {
-  let { id } = useParams()
+  let { courseId } = useParams()
 
-  const { course, isLoading } = useCourse({ courseId: id! })
+  const { course, isLoading } = useCourse(courseId)
 
   if (isLoading) return <div>Loading</div>
 

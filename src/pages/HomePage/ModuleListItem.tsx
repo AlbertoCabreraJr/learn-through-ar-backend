@@ -46,7 +46,7 @@ const ModuleListItemButton = ({ module, course }: { module: Module; course: Cour
 
   const handleClick = async (e: any) => {
     e.preventDefault()
-    navigate(`/module/${module._id}`)
+    navigate(`/course/${course._id}/module/${module._id}`)
   }
 
   return (

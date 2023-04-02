@@ -12,10 +12,10 @@ const BottomNavbar = () => {
 
   return (
     <div className='bottom-navbar'>
-      <div className='home' onClick={() => navigate(`/course/${user?.course}`)}>
+      <div className='home' onClick={() => navigate(`/course/${user?.course}`, { replace: true })}>
         {location.pathname.includes('/course') ? <HomeFilledIcon /> : <HomeOutlinedIcon />}
       </div>
-      <div className='profile' onClick={() => navigate('/profile')}>
+      <div className='profile' onClick={() => navigate('/profile', { replace: true })}>
         {location.pathname === '/profile' ? <ProfileFilledIcon /> : <ProfileOutlinedIcon />}
       </div>
     </div>

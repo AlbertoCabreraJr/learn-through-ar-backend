@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import back from '../assets/back.svg'
 import { useAuthContext } from '../context/AuthContext'
@@ -13,9 +13,11 @@ const LayoutWithoutNavigation = ({ onClickBack, children }: LayoutWithoutNavigat
   const navigate = useNavigate()
   const { userToken } = useAuthContext()
 
-  if (!userToken) {
-    navigate('/sign-in')
-  }
+  useEffect(() => {
+    if (!userToken) {
+      navigate('/sign-in')
+    }
+  }, [userToken, navigate])
 
   return (
     <div className='layout-without-navigation'>

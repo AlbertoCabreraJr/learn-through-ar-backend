@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Module from '../types/Module'
 import fetcher from '../utils/fetcher'
 
-const useModule = ({ moduleId }: { moduleId: string }) => {
+const useModule = (moduleId?: string) => {
   const [isLoading, setIsLoading] = useState(false)
   const [module, setModule] = useState<Module | null>(null)
   const navigate = useNavigate()
@@ -27,11 +27,34 @@ const useModule = ({ moduleId }: { moduleId: string }) => {
     await getModule()
   }
 
-  useEffect(() => {
-    getModule()
-  }, [])
+  const updateModule = async ({
+    moduleId,
+    body
+  }: {
+    moduleId: string
+    body: { progress?: number; finished?: boolean }
+  }) => {
+    try {
+      setIsLoading(true)
 
-  return { isLoading, module, refetchModule }
+      await fetcher.put(`/modules/${moduleId}`, {
+        ...body
+      })
+    } catch (error) {
+      console.error(error)
+      navigate('/error')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (moduleId) {
+      getModule()
+    }
+  }, [moduleId])
+
+  return { isLoading, module, refetchModule, updateModule }
 }
 
 export default useModule

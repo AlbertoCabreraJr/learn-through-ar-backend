@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
-import { useUserContext } from '../../context/UserContext'
 import useCourse from '../../hooks/useCourse'
 import useModule from '../../hooks/useModule'
 import ExamItem from './ExamItem'
@@ -8,13 +7,16 @@ import TopicList from './TopicList'
 
 const ModulePage = () => {
   const navigate = useNavigate()
-  const { id } = useParams()
+  const { courseId, moduleId } = useParams()
 
-  const { user, isLoading: isLoadingUserContext } = useUserContext()
-  const { module, isLoading: isLoadingModule } = useModule({ moduleId: id! })
-  const { course, isLoading: isLoadingCourse } = useCourse({ courseId: user?.course! })
+  if (!courseId || !moduleId) {
+    navigate('/error')
+  }
 
-  if (isLoadingCourse || isLoadingModule || isLoadingUserContext || !user) return <div>Loading</div>
+  const { module, isLoading: isLoadingModule } = useModule(moduleId)
+  const { course, isLoading: isLoadingCourse } = useCourse(courseId)
+
+  if (isLoadingCourse || isLoadingModule) return <div>Loading</div>
 
   if (!module || !course) return <div>Module does not exist</div>
 
@@ -30,7 +32,7 @@ const ModulePage = () => {
             Progress: {module.progress}/{module.totalTopicsAndExam}
           </div>
         </div>
-        <TopicList topics={module.topics} course={course!} />
+        <TopicList course={course!} module={module} topics={module.topics} />
         <ExamItem exam={module.exam} module={module} />
       </div>
     </LayoutWithoutNavigation>

@@ -16,7 +16,7 @@ const getArgs = ({ config }: { config: InternalAxiosRequestConfig }) => {
     host: host.hostname,
     path,
     method,
-    body: config.data,
+    body: JSON.stringify(config.data),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json'
@@ -24,6 +24,7 @@ const getArgs = ({ config }: { config: InternalAxiosRequestConfig }) => {
   }
 
   if (method === 'GET') {
+    // @ts-ignore
     delete args.body
   }
 
