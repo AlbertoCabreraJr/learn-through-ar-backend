@@ -1,9 +1,11 @@
+import Module from './Module'
+
 type Course = {
   _id: string
   userEmail: string
   name: string
   user: string
-  modules: string[]
+  modules: Module[]
   currentModule: string
   currentTopic: string
   finishedModules: string[]

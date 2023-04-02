@@ -31,7 +31,7 @@ const getArgs = ({ config }: { config: InternalAxiosRequestConfig }) => {
 }
 
 const fetcher = axios.create({
-  baseURL: BASE_URL,
+  baseURL: `${BASE_URL}/${STAGE}`,
   timeout: 1000 * 90 // 90s
 })
 
@@ -52,7 +52,6 @@ fetcher.interceptors.request.use(
       credentials.accessKeyId = parsedAWSCredentials.Credentials.AccessKeyId
       credentials.secretAccessKey = parsedAWSCredentials.Credentials.SecretKey
       credentials.sessionToken = parsedAWSCredentials.Credentials.SessionToken
-      console.log(`${BASE_URL}/${STAGE}/signer`)
 
       const { data: signedHeaders } = await axios.post(`${BASE_URL}/${STAGE}/signer`, {
         request: args,

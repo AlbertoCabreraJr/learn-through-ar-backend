@@ -1,25 +1,27 @@
-import { course } from '../../utils/mockData'
 import check from '../../assets/check.svg'
 import { useNavigate } from 'react-router-dom'
+import Module from '../../types/Module'
+import Course from '../../types/Course'
 
 type ModuleListItemProps = {
-  module: any
+  module: Module
+  course: Course
 }
 
-const shouldDisableModule = (module: any, course: any) => {
+const shouldDisableModule = (module: Module, course: Course) => {
   return !module.finished && !course.finishedModules.includes(module._id) && course.currentModule !== module._id
 }
 
-const ModuleListItem: React.FC<ModuleListItemProps> = ({ module }) => {
+const ModuleListItem: React.FC<ModuleListItemProps> = ({ module, course }) => {
   return (
     <div className={`module-list-item${shouldDisableModule(module, course) ? ' disabled' : ' enabled'}`}>
-      <ModuleListItemHeader module={module} />
-      <ModuleListItemFooter module={module} />
+      <ModuleListItemHeader module={module} course={course} />
+      <ModuleListItemFooter module={module} course={course} />
     </div>
   )
 }
 
-const ModuleListItemHeader = ({ module }: { module: any }) => {
+const ModuleListItemHeader = ({ module, course }: { module: Module; course: Course }) => {
   return (
     <div className='module-list-item-header'>
       <div className='module-list-item-header-title'>{module.title}</div>
@@ -28,16 +30,16 @@ const ModuleListItemHeader = ({ module }: { module: any }) => {
   )
 }
 
-const ModuleListItemFooter = ({ module }: { module: any }) => {
+const ModuleListItemFooter = ({ module, course }: { module: Module; course: Course }) => {
   return (
     <div className='module-list-item-footer'>
       <ModuleListItemProgress module={module} />
-      <ModuleListItemButton module={module} />
+      <ModuleListItemButton module={module} course={course} />
     </div>
   )
 }
 
-const ModuleListItemButton = ({ module }: { module: any }) => {
+const ModuleListItemButton = ({ module, course }: { module: Module; course: Course }) => {
   const navigate = useNavigate()
 
   if (shouldDisableModule(module, course)) return null
@@ -48,14 +50,17 @@ const ModuleListItemButton = ({ module }: { module: any }) => {
   }
 
   return (
-    <button className={`module-list-item-button${module.finished ? ' button-finished' : ' button-unfinish'}`} onClick={handleClick}>
+    <button
+      className={`module-list-item-button${module.finished ? ' button-finished' : ' button-unfinish'}`}
+      onClick={handleClick}
+    >
       <div>{module.finished ? 'Review' : 'Continue'}</div>
       {module.finished && <img src={check} alt='Checkmark' />}
     </button>
   )
 }
 
-const ModuleListItemProgress = ({ module }: { module: any }) => {
+const ModuleListItemProgress = ({ module }: { module: Module }) => {
   return (
     <div className='module-list-item-progress'>
       Progress: {module.progress}/{module.totalTopicsAndExam}
