@@ -8,6 +8,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { AuthProvider } from './context/AuthContext'
 import { UserProvider } from './context/UserContext'
 import useIsDesktop from './hooks/useIsDesktop'
+import ErrorPage from './pages/ErrorPage'
 
 const App = () => {
   const { isDesktop } = useIsDesktop()
@@ -23,6 +24,7 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path='/sign-in' element={<SignInPage />}></Route>
+              <Route path='/error' element={<ErrorPage />}></Route>
               <Route path='*' element={<NotFoundPage />}></Route>
               <Route path='/course/:id' element={<HomePage />}></Route>
               <Route path='/module/:id' element={<ModulePage />}></Route>

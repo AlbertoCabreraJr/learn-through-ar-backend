@@ -42,18 +42,22 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (codeResponse) => {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/${process.env.REACT_APP_STAGE}/auth`, {
-        headers: {
-          Authorization: codeResponse.code
-        }
-      })
+      try {
+        const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/${process.env.REACT_APP_STAGE}/auth`, {
+          headers: {
+            Authorization: codeResponse.code
+          }
+        })
 
-      localStorage.setItem('aws', JSON.stringify(data.awsCredentials))
-      localStorage.setItem('id_token', JSON.stringify(data.id_token))
-      localStorage.setItem('user', JSON.stringify(data.user))
+        localStorage.setItem('aws', JSON.stringify(data.awsCredentials))
+        localStorage.setItem('id_token', JSON.stringify(data.id_token))
+        localStorage.setItem('user', JSON.stringify(data.user))
 
-      dispatch({ type: 'SIGN_IN', token: data.id_token })
-      setIsLoading(false)
+        dispatch({ type: 'SIGN_IN', token: data.id_token })
+        setIsLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     },
     onError: (error) => {
       console.error(error)

@@ -5,13 +5,13 @@ import useCourse from '../../hooks/useCourse'
 
 const HomePage = () => {
   let { id } = useParams()
+
   const { course, isLoading } = useCourse({ courseId: id! })
 
   if (isLoading) return <div>Loading</div>
 
   if (!course) return <div>Course does not exist</div>
 
-  console.log(course)
   return (
     <Layout>
       <div className='home-page'>
