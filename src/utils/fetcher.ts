@@ -1,4 +1,3 @@
-import { RequestSigner } from 'aws4'
 import axios, { InternalAxiosRequestConfig } from 'axios'
 import AWSCredential from '../types/AWSCredential'
 import getAWSCredentials from './getAWSCredentials'
@@ -31,8 +30,13 @@ const getArgs = ({ config }: { config: InternalAxiosRequestConfig }) => {
   return args
 }
 
-axios.interceptors.request.use(
-  function (config: InternalAxiosRequestConfig) {
+const fetcher = axios.create({
+  baseURL: BASE_URL,
+  timeout: 1000 * 90 // 90s
+})
+
+fetcher.interceptors.request.use(
+  async function (config: InternalAxiosRequestConfig) {
     const args = getArgs({ config })
 
     const credentials = {
@@ -40,6 +44,7 @@ axios.interceptors.request.use(
       secretAccessKey: '',
       sessionToken: ''
     }
+
     const storedAWSCredentials = getAWSCredentials()
     if (storedAWSCredentials) {
       const parsedAWSCredentials = JSON.parse(storedAWSCredentials) as AWSCredential
@@ -47,13 +52,16 @@ axios.interceptors.request.use(
       credentials.accessKeyId = parsedAWSCredentials.Credentials.AccessKeyId
       credentials.secretAccessKey = parsedAWSCredentials.Credentials.SecretKey
       credentials.sessionToken = parsedAWSCredentials.Credentials.SessionToken
+      console.log(`${BASE_URL}/${STAGE}/signer`)
 
-      const signer = new RequestSigner(args, credentials)
-      const signed = signer.sign()
+      const { data: signedHeaders } = await axios.post(`${BASE_URL}/${STAGE}/signer`, {
+        request: args,
+        credentials
+      })
 
       const options = {
         headers: {
-          ...signed.headers,
+          ...signedHeaders,
           app_user_id: parsedAWSCredentials.IdentityId,
           app_user_email: parsedAWSCredentials.email
         }
@@ -69,7 +77,5 @@ axios.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
-const fetcher = axios
 
 export default fetcher
