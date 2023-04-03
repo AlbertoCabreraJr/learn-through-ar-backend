@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Module from '../types/Module'
 import fetcher from '../utils/fetcher'
 
-const useModule = (moduleId?: string) => {
+const useModule = (moduleId: string) => {
   const [isLoading, setIsLoading] = useState(false)
   const [module, setModule] = useState<Module | null>(null)
   const navigate = useNavigate()
@@ -49,10 +49,8 @@ const useModule = (moduleId?: string) => {
   }
 
   useEffect(() => {
-    if (moduleId) {
-      getModule()
-    }
-  }, [moduleId])
+    getModule()
+  }, [])
 
   return { isLoading, module, refetchModule, updateModule }
 }

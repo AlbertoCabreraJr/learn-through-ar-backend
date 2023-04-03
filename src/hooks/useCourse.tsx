@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Course from '../types/Course'
 import fetcher from '../utils/fetcher'
 
-const useCourse = (courseId?: string) => {
+const useCourse = (courseId: string) => {
   const [isLoading, setIsLoading] = useState(false)
   const [course, setCourse] = useState<Course | null>(null)
   const navigate = useNavigate()
@@ -54,10 +54,8 @@ const useCourse = (courseId?: string) => {
   }
 
   useEffect(() => {
-    if (courseId) {
-      getCourse()
-    }
-  }, [courseId])
+    getCourse()
+  }, [])
 
   return { isLoading, course, refetchCourse, updateCourse }
 }

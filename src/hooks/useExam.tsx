@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Topic from '../types/Topic'
+import Exam from '../types/Exam'
 import fetcher from '../utils/fetcher'
 
-const useTopic = (topicId: string) => {
+const useExam = (examId: string) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [topic, setTopic] = useState<Topic | null>(null)
+  const [exam, setExam] = useState<Exam | null>(null)
   const navigate = useNavigate()
 
-  const getTopic = async () => {
+  const getExam = async () => {
     try {
       setIsLoading(true)
 
-      const { data } = await fetcher.get(`/topics/${topicId}`)
+      const { data } = await fetcher.get(`/exams/${examId}`)
 
-      setTopic(data)
+      setExam(data)
     } catch (error) {
       console.error(error)
       navigate('/error')
@@ -23,15 +23,15 @@ const useTopic = (topicId: string) => {
     }
   }
 
-  const refetchTopic = async () => {
-    await getTopic()
+  const refetchExam = async () => {
+    await getExam()
   }
 
-  const updateTopic = async ({ topicId, body }: { topicId: string; body: { finished: boolean } }) => {
+  const updateExam = async ({ examId, body }: { examId: string; body: { finished: boolean; score: number } }) => {
     try {
       setIsLoading(true)
 
-      await fetcher.put(`/topics/${topicId}`, {
+      await fetcher.put(`/exams/${examId}`, {
         ...body
       })
     } catch (error) {
@@ -43,10 +43,10 @@ const useTopic = (topicId: string) => {
   }
 
   useEffect(() => {
-    getTopic()
+    getExam()
   }, [])
 
-  return { isLoading, topic, refetchTopic, updateTopic }
+  return { isLoading, exam, refetchExam, updateExam }
 }
 
-export default useTopic
+export default useExam

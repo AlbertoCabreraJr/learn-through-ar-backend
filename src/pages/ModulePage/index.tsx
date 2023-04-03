@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
+import Loader from '../../components/Loader'
 import useCourse from '../../hooks/useCourse'
 import useModule from '../../hooks/useModule'
 import ExamItem from './ExamItem'
@@ -10,15 +11,23 @@ const ModulePage = () => {
   const { courseId, moduleId } = useParams()
 
   if (!courseId || !moduleId) {
-    navigate('/error')
+    navigate('/error', { replace: true })
   }
 
-  const { module, isLoading: isLoadingModule } = useModule(moduleId)
-  const { course, isLoading: isLoadingCourse } = useCourse(courseId)
+  const { module, isLoading: isLoadingModule } = useModule(moduleId!)
+  const { course, isLoading: isLoadingCourse } = useCourse(courseId!)
 
-  if (isLoadingCourse || isLoadingModule) return <div>Loading</div>
+  if (isLoadingCourse || isLoadingModule || !module || !course) {
+    return (
+      <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
+        <Loader />
+      </LayoutWithoutNavigation>
+    )
+  }
 
-  if (!module || !course) return <div>Module does not exist</div>
+  if (!isLoadingCourse && !isLoadingModule && (!module || !course)) {
+    navigate('/error', { replace: true })
+  }
 
   return (
     <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
