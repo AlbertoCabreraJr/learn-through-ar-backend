@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
 import useCourse from '../../hooks/useCourse'
@@ -19,6 +18,7 @@ const TopicPage = () => {
   const handleFinishTopic = async () => {
     // No need to update if topic is already finished
     if (topic?.finished) {
+      navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
       return
     }
 

@@ -1,11 +1,16 @@
 import chevronRight from '../../assets/chevronright.svg'
 import check from '../../assets/check.svg'
+import { useNavigate, useParams } from 'react-router-dom'
+import Exam from '../../types/Exam'
 
-const shouldDisabledExam = (exam: any, module: any) => {
+const shouldDisabledExam = (exam: Exam, module: any) => {
   return !exam.finished && module.progress !== module.totalTopicsAndExam - 1
 }
 
 const ExamItem = ({ exam, module }: { exam: any; module: any }) => {
+  const { courseId, moduleId } = useParams()
+  const navigate = useNavigate()
+
   let examItemClassname = 'exam-item'
 
   if (exam.finished) {
@@ -17,7 +22,10 @@ const ExamItem = ({ exam, module }: { exam: any; module: any }) => {
   }
 
   return (
-    <div className={examItemClassname}>
+    <div
+      className={examItemClassname}
+      onClick={() => navigate(`/course/${courseId}/module/${moduleId}/exam/${exam._id}`)}
+    >
       <div className='exam-item-title'>{exam.title}</div>
       <RightIcon exam={exam} module={module} />
     </div>
