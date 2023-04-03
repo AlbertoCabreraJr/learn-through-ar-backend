@@ -40,7 +40,7 @@ const useCourse = (courseId: string) => {
     }
   }) => {
     try {
-      setIsLoading(false)
+      setIsLoading(true)
 
       await fetcher.put(`/courses/${courseId}`, {
         ...body

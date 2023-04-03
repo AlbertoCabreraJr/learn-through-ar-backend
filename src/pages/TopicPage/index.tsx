@@ -29,6 +29,7 @@ const TopicPage = () => {
       navigate('/error', { replace: true })
     }
   }, [topic, module, course, isLoadingCourse, isLoadingModule, isLoadingTopic, courseId, moduleId, topicId, navigate])
+  console.log(isLoadingTopic, isLoadingModule, isLoadingCourse, course, module, topic, courseId, moduleId, topicId)
 
   if (
     isLoadingTopic ||
@@ -42,7 +43,9 @@ const TopicPage = () => {
     !topicId
   ) {
     return (
-      <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
+      <LayoutWithoutNavigation
+        onClickBack={() => navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })}
+      >
         <Loader />
       </LayoutWithoutNavigation>
     )
@@ -50,27 +53,24 @@ const TopicPage = () => {
 
   const handleFinishTopic = async () => {
     // No need to update if topic is already finished
-    if (topic?.finished) {
-      navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
-      return
+    if (!topic.finished) {
+      await updateTopic({ topicId: topicId!, body: { finished: true } })
+      await updateModule({ moduleId: moduleId!, body: { progress: module?.progress! + 1 } })
+
+      const currentFinishedTopics = course?.finishedTopics ? course.finishedTopics : []
+      const newFinishedTopics = [...currentFinishedTopics, topicId as string]
+
+      const currentTopicIndex = module?.topics?.findIndex((topic) => topicId === topic._id)
+      const newCurrentTopic = module?.topics[(currentTopicIndex as number) + 1]
+
+      await updateCourse({
+        courseId: courseId!,
+        body: {
+          finishedTopics: newFinishedTopics ? newFinishedTopics : [],
+          currentTopic: newCurrentTopic?._id
+        }
+      })
     }
-
-    await updateTopic({ topicId: topicId!, body: { finished: true } })
-    await updateModule({ moduleId: moduleId!, body: { progress: module?.progress! + 1 } })
-
-    const currentFinishedTopics = course?.finishedTopics ? course.finishedTopics : []
-    const newFinishedTopics = [...currentFinishedTopics, topicId as string]
-
-    const currentTopicIndex = module?.topics?.findIndex((topic) => topicId === topic._id)
-    const newCurrentTopic = module?.topics[(currentTopicIndex as number) + 1]
-
-    await updateCourse({
-      courseId: courseId!,
-      body: {
-        finishedTopics: newFinishedTopics ? newFinishedTopics : [],
-        currentTopic: newCurrentTopic?._id
-      }
-    })
 
     navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
   }

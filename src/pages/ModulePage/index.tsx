@@ -21,7 +21,7 @@ const ModulePage = () => {
 
   if (isLoadingCourse || isLoadingModule || !module || !course) {
     return (
-      <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
+      <LayoutWithoutNavigation onClickBack={() => navigate(`/course/${courseId}`, { replace: true })}>
         <Loader />
       </LayoutWithoutNavigation>
     )
