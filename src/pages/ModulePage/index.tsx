@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
 import Loader from '../../components/Loader'
@@ -9,13 +10,14 @@ import TopicList from './TopicList'
 const ModulePage = () => {
   const navigate = useNavigate()
   const { courseId, moduleId } = useParams()
-
-  if (!courseId || !moduleId) {
-    navigate('/error', { replace: true })
-  }
-
   const { module, isLoading: isLoadingModule } = useModule(moduleId!)
   const { course, isLoading: isLoadingCourse } = useCourse(courseId!)
+
+  useEffect(() => {
+    if (!isLoadingCourse && !isLoadingModule && !moduleId && !courseId && !course && !module) {
+      navigate('/error', { replace: true })
+    }
+  }, [course, module, courseId, moduleId, isLoadingCourse, isLoadingModule, navigate])
 
   if (isLoadingCourse || isLoadingModule || !module || !course) {
     return (
@@ -23,10 +25,6 @@ const ModulePage = () => {
         <Loader />
       </LayoutWithoutNavigation>
     )
-  }
-
-  if (!isLoadingCourse && !isLoadingModule && (!module || !course)) {
-    navigate('/error', { replace: true })
   }
 
   return (

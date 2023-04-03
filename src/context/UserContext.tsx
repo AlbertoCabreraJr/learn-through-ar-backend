@@ -18,7 +18,6 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const getUser = async () => {
       setIsLoading(true)
       const storedUser = localStorage.getItem('user')
-
       if (!storedUser) {
         setUser(null)
         return

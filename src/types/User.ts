@@ -1,7 +1,9 @@
+import Course from './Course'
+
 type User = {
   name: string
   email: string
-  course: string
+  course: Course
 }
 
 export default User

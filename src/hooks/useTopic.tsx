@@ -44,7 +44,7 @@ const useTopic = (topicId: string) => {
 
   useEffect(() => {
     getTopic()
-  }, [])
+  }, [topicId])
 
   return { isLoading, topic, refetchTopic, updateTopic }
 }

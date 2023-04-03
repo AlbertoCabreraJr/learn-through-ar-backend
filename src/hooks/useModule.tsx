@@ -13,11 +13,10 @@ const useModule = (moduleId: string) => {
       setIsLoading(true)
 
       const { data } = await fetcher.get(`/modules/${moduleId}`)
-
       setModule(data)
     } catch (error) {
       console.error(error)
-      navigate('/error')
+      navigate('/error', { replace: true })
     } finally {
       setIsLoading(false)
     }
@@ -42,7 +41,7 @@ const useModule = (moduleId: string) => {
       })
     } catch (error) {
       console.error(error)
-      navigate('/error')
+      navigate('/error', { replace: true })
     } finally {
       setIsLoading(false)
     }
@@ -50,7 +49,7 @@ const useModule = (moduleId: string) => {
 
   useEffect(() => {
     getModule()
-  }, [])
+  }, [moduleId])
 
   return { isLoading, module, refetchModule, updateModule }
 }

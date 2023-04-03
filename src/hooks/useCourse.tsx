@@ -17,7 +17,7 @@ const useCourse = (courseId: string) => {
       setCourse(data)
     } catch (error) {
       console.error(error)
-      navigate('/error')
+      navigate('/error', { replace: true })
     } finally {
       setIsLoading(false)
     }
@@ -47,7 +47,7 @@ const useCourse = (courseId: string) => {
       })
     } catch (error) {
       console.error(error)
-      navigate('/error')
+      navigate('/error', { replace: true })
     } finally {
       setIsLoading(false)
     }
@@ -55,7 +55,7 @@ const useCourse = (courseId: string) => {
 
   useEffect(() => {
     getCourse()
-  }, [])
+  }, [courseId])
 
   return { isLoading, course, refetchCourse, updateCourse }
 }

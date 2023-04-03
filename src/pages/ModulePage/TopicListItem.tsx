@@ -22,7 +22,13 @@ const TopicListItem = ({ topic, course, module }: { topic: Topic; course: Course
     <div
       key={topic._id}
       className={topicListItemClassname}
-      onClick={() => navigate(`/course/${course._id}/module/${module._id}/topic/${topic._id}`)}
+      onClick={() => {
+        if (shouldDisableTopic(topic, course)) {
+          return
+        }
+
+        navigate(`/course/${course._id}/module/${module._id}/topic/${topic._id}`)
+      }}
     >
       <div className='topic-list-item-title'>{topic.title}</div>
       <RightIcon topic={topic} course={course} />

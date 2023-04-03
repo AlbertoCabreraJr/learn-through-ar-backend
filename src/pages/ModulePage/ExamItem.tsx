@@ -24,7 +24,13 @@ const ExamItem = ({ exam, module }: { exam: any; module: any }) => {
   return (
     <div
       className={examItemClassname}
-      onClick={() => navigate(`/course/${courseId}/module/${moduleId}/exam/${exam._id}`)}
+      onClick={() => {
+        if (shouldDisabledExam(exam, module)) {
+          return
+        }
+
+        navigate(`/course/${courseId}/module/${moduleId}/exam/${exam._id}`)
+      }}
     >
       <div className='exam-item-title'>{exam.title}</div>
       <RightIcon exam={exam} module={module} />

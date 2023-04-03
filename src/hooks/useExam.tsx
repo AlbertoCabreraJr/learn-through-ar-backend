@@ -44,7 +44,7 @@ const useExam = (examId: string) => {
 
   useEffect(() => {
     getExam()
-  }, [])
+  }, [examId])
 
   return { isLoading, exam, refetchExam, updateExam }
 }

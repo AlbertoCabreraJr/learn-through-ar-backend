@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
 import Loader from '../../components/Loader'
@@ -7,17 +8,29 @@ import useTopic from '../../hooks/useTopic'
 
 const TopicPage = () => {
   const navigate = useNavigate()
-  const { courseId, topicId, moduleId } = useParams()
+  const { courseId, moduleId, topicId } = useParams()
 
-  if (!courseId || !topicId || !moduleId) {
-    navigate('/error', { replace: true })
-  }
+  const { topic, isLoading: isLoadingTopic, updateTopic } = useTopic(topicId!)
+  const { module, isLoading: isLoadingModule, updateModule } = useModule(moduleId!)
+  const { course, isLoading: isLoadingCourse, updateCourse } = useCourse(courseId!)
 
-  const { isLoading: isLoadingTopic, topic, updateTopic } = useTopic(topicId!)
-  const { updateModule, module, isLoading: isLoadingModule } = useModule(moduleId!)
-  const { updateCourse, course, isLoading: isLoadingCourse } = useCourse(courseId!)
+  useEffect(() => {
+    if (
+      !isLoadingTopic &&
+      !isLoadingModule &&
+      !isLoadingCourse &&
+      !course &&
+      !module &&
+      !topic &&
+      !courseId &&
+      !moduleId &&
+      !topicId
+    ) {
+      navigate('/error', { replace: true })
+    }
+  }, [topic, module, course, isLoadingCourse, isLoadingModule, isLoadingTopic, courseId, moduleId, topicId, navigate])
 
-  if (isLoadingTopic || isLoadingModule || isLoadingCourse || !topic || !module || !course) {
+  if (isLoadingTopic || isLoadingModule || isLoadingCourse) {
     return (
       <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
         <Loader />
@@ -25,14 +38,11 @@ const TopicPage = () => {
     )
   }
 
-  if (!isLoadingTopic && !isLoadingModule && !isLoadingCourse && (!topic || !module || !course)) {
-    navigate('/error', { replace: true })
-  }
-
   const handleFinishTopic = async () => {
     // No need to update if topic is already finished
     if (topic?.finished) {
       navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
+      return
     }
 
     await updateTopic({ topicId: topicId!, body: { finished: true } })

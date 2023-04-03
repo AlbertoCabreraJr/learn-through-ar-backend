@@ -13,7 +13,7 @@ const SignInPage = () => {
 
   useEffect(() => {
     if (userToken && user) {
-      navigate(`/course/${user.course}`, { replace: true })
+      navigate(`/course/${user.course._id}`, { replace: true })
     }
   }, [userToken, isLoading, navigate, user])
 
