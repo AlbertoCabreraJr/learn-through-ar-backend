@@ -30,7 +30,17 @@ const TopicPage = () => {
     }
   }, [topic, module, course, isLoadingCourse, isLoadingModule, isLoadingTopic, courseId, moduleId, topicId, navigate])
 
-  if (isLoadingTopic || isLoadingModule || isLoadingCourse) {
+  if (
+    isLoadingTopic ||
+    isLoadingModule ||
+    isLoadingCourse ||
+    !course ||
+    !module ||
+    !topic ||
+    !courseId ||
+    !moduleId ||
+    !topicId
+  ) {
     return (
       <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
         <Loader />
@@ -66,7 +76,7 @@ const TopicPage = () => {
   }
 
   return (
-    <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
+    <LayoutWithoutNavigation onClickBack={() => navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })}>
       <div className='topic-page' onClick={handleFinishTopic}>
         Topic Page
       </div>

@@ -28,7 +28,7 @@ const ModulePage = () => {
   }
 
   return (
-    <LayoutWithoutNavigation onClickBack={() => navigate(-1)}>
+    <LayoutWithoutNavigation onClickBack={() => navigate(`/course/${courseId}`, { replace: true })}>
       <div className='module-page'>
         <div className='module-page-header'>
           <div className='module-page-title-container'>
