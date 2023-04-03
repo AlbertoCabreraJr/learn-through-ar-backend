@@ -1,0 +1,66 @@
+@use '../../colors' as colors;
+
+.exam-score {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: colors.$background-color;
+
+  .close-button {
+    display: flex;
+    justify-content: right;
+    padding: 20px 20px 0 0;
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+
+    .logo {
+      width: 64px;
+      height: 64px;
+    }
+
+    .score-text {
+      color: colors.$secondary;
+      font-size: 28px;
+      font-weight: 500;
+      margin: 10px 0;
+    }
+
+    .final-and-total-scores {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      .final-score,
+      .total-score {
+        color: colors.$secondary;
+        font-weight: 700;
+        font-size: 40px;
+      }
+
+      .out-of {
+        color: colors.$secondary;
+        font-weight: 400;
+        font-size: 24px;
+      }
+    }
+
+    .for {
+      margin-bottom: 10px;
+    }
+
+    .title {
+      color: colors.$secondary;
+      font-weight: 600;
+      font-size: 24px;
+    }
+  }
+}

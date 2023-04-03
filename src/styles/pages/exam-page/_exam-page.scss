@@ -1,0 +1,46 @@
+@use '../../colors' as colors;
+
+.exam-page {
+  padding: 20px;
+
+  .exam-question-text {
+    font-size: 18px;
+    color: colors.$secondary;
+    font-weight: 700;
+  }
+
+  .exam-question-choices {
+    padding: 20px 0px;
+
+    .exam-question-choice {
+      border: 1px solid colors.$primary;
+      color: colors.$primary;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+    }
+
+    .exam-question-choice-final {
+      color: colors.$text-light;
+      background-color: colors.$secondary;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+    }
+  }
+
+  .exam-question-confirm {
+    width: 100%;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: colors.$primary;
+    color: colors.$text-light;
+    font-size: 20px;
+    border: 0;
+    font-weight: 700;
+  }
+
+  .exam-question-confirm:disabled {
+    background-color: colors.$outline;
+  }
+}

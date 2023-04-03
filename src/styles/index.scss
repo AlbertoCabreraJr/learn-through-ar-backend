@@ -19,6 +19,8 @@
 @use 'pages/module-page/topic-list';
 @use 'pages/module-page/topic-list-item';
 @use 'pages/module-page/exam-item';
+@use 'pages/exam-page/exam-page';
+@use 'pages/exam-page/exam-score';
 
 html,
 body {
