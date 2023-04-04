@@ -1,0 +1,26 @@
+@use '../colors' as colors;
+
+.allow-camera-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding: 20px;
+
+  .text {
+    margin: 20px 0;
+    text-align: center;
+    color: colors.$secondary;
+    font-size: 24px;
+  }
+
+  .contact-text {
+    text-align: center;
+    color: colors.$primary;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0 20px;
+    text-decoration: underline;
+  }
+}

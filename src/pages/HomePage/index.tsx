@@ -3,14 +3,26 @@ import ModuleList from './ModuleList'
 import { useNavigate, useParams } from 'react-router-dom'
 import useCourse from '../../hooks/useCourse'
 import Loader from '../../components/Loader'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import AllowCameraMessage from '../../components/AllowCameraMessage'
 
 const HomePage = () => {
   let { courseId } = useParams()
   const navigate = useNavigate()
   const { course, isLoading } = useCourse(courseId!)
+  const [showAllowCameraMessage, setShowAllowCameraMessage] = useState(false)
+
+  const handleAskCameraAccess = async () => {
+    try {
+      await navigator.mediaDevices.getUserMedia({ video: true })
+    } catch (error) {
+      setShowAllowCameraMessage(true)
+    }
+  }
 
   useEffect(() => {
+    handleAskCameraAccess()
+
     if (!isLoading && !courseId && !course) {
       navigate('/error', { replace: true })
     }
@@ -22,6 +34,10 @@ const HomePage = () => {
         <Loader />
       </LayoutWithNavigation>
     )
+  }
+
+  if (showAllowCameraMessage) {
+    return <AllowCameraMessage />
   }
 
   return (

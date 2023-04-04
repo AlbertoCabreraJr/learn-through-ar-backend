@@ -1,9 +1,11 @@
+@use '../colors' as colors;
+
 .switch-to-mobile-message {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   gap: 20px;
   padding: 0 200px;
 
@@ -11,6 +13,7 @@
     font-size: 24px;
     text-align: center;
     font-weight: 600;
+    color: colors.$secondary;
   }
 
   .logo {
