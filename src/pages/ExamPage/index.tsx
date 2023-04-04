@@ -65,47 +65,50 @@ const ExamPage = () => {
     const newProgress = progress + 1
 
     if (newProgress === exam.questions.length) {
-      if (!exam.finished && !module.finished) {
-        await updateExam({
-          examId: examId!,
-          body: {
-            finished: true,
-            score: newScore
-          }
-        })
+      if (exam.finished && module.finished) {
+        setShowScore(true)
+        return
+      }
 
-        await updateModule({
-          moduleId: moduleId!,
-          body: {
-            finished: true,
-            progress: module.progress + 1
-          }
-        })
-
-        const currentFinishedModules = course?.finishedModules ? course.finishedModules : []
-        const newFinishedModules = [...currentFinishedModules, moduleId as string]
-
-        const currentModuleIndex = course?.modules?.findIndex((module) => moduleId === module._id)
-        const newCurrentModule = course?.modules[(currentModuleIndex as number) + 1]
-
-        // no new module left
-        if (!newCurrentModule) {
-          await updateCourse({
-            courseId: courseId!,
-            body: {
-              finishedModules: newFinishedModules ? newFinishedModules : []
-            }
-          })
-        } else {
-          await updateCourse({
-            courseId: courseId!,
-            body: {
-              finishedModules: newFinishedModules ? newFinishedModules : [],
-              currentModule: newCurrentModule?._id,
-              currentTopic: newCurrentModule.topics[0]._id
-            }
-          })
+      await updateExam({
+        examId: examId!,
+        body: {
+          finished: true,
+          score: newScore
         }
+      })
+
+      await updateModule({
+        moduleId: moduleId!,
+        body: {
+          finished: true,
+          progress: module.progress + 1
+        }
+      })
+
+      const currentFinishedModules = course?.finishedModules ? course.finishedModules : []
+      const newFinishedModules = [...currentFinishedModules, moduleId as string]
+
+      const currentModuleIndex = course?.modules?.findIndex((module) => moduleId === module._id)
+      const newCurrentModule = course?.modules[(currentModuleIndex as number) + 1]
+
+      // no new module left
+      if (!newCurrentModule) {
+        await updateCourse({
+          courseId: courseId!,
+          body: {
+            finishedModules: newFinishedModules ? newFinishedModules : []
+          }
+        })
+      } else {
+        await updateCourse({
+          courseId: courseId!,
+          body: {
+            finishedModules: newFinishedModules ? newFinishedModules : [],
+            currentModule: newCurrentModule?._id,
+            currentTopic: newCurrentModule.topics[0]._id
+          }
+        })
       }
 
       setShowScore(true)
