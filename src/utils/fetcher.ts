@@ -7,14 +7,14 @@ const STAGE = process.env.REACT_APP_STAGE
 
 const getArgs = ({ config }: { config: InternalAxiosRequestConfig }) => {
   const host = new URL(BASE_URL!)
-  const path = config.url?.split(config.baseURL!)[1]
+  const path = config.url?.split(config.baseURL!)[0]
   const method = config.method?.toUpperCase()
 
   const args = {
     service: 'execute-api',
     region: 'ap-southeast-1',
     host: host.hostname,
-    path,
+    path: `/${STAGE}${path}`,
     method,
     body: JSON.stringify(config.data),
     headers: {
@@ -26,6 +26,8 @@ const getArgs = ({ config }: { config: InternalAxiosRequestConfig }) => {
   if (method === 'GET') {
     // @ts-ignore
     delete args.body
+    // @ts-ignore
+    args.headers['Content-Type'] = ''
   }
 
   return args
@@ -54,14 +56,16 @@ fetcher.interceptors.request.use(
       credentials.secretAccessKey = parsedAWSCredentials.Credentials.SecretKey
       credentials.sessionToken = parsedAWSCredentials.Credentials.SessionToken
 
-      const { data: signedHeaders } = await axios.post(`${BASE_URL}/${STAGE}/signer`, {
+      const { data: signedRequest } = await axios.post(`${BASE_URL}/${STAGE}/signer`, {
         request: args,
         credentials
       })
 
+      console.log(signedRequest)
+
       const options = {
         headers: {
-          ...signedHeaders,
+          ...signedRequest.headers,
           app_user_id: parsedAWSCredentials.IdentityId,
           app_user_email: parsedAWSCredentials.email
         }
