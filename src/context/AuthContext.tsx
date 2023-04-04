@@ -121,6 +121,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       )
 
+      localStorage.setItem('aws', JSON.stringify(data.awsCredentials))
       localStorage.setItem('access_token', JSON.stringify(data.access_token))
 
       dispatch({ type: 'RESTORE_TOKEN', token: data.access_token })
