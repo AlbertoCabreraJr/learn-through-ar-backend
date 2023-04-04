@@ -16,7 +16,7 @@ const HomePage = () => {
     }
   }, [isLoading, courseId, course, navigate])
 
-  if (isLoading || !course) {
+  if (isLoading || !course || !courseId) {
     return (
       <LayoutWithNavigation>
         <Loader />

@@ -36,7 +36,7 @@ const ExamPage = () => {
       navigate('/error', { replace: true })
     }
   }, [isLoadingCourse, isLoadingExam, isLoadingModule, course, module, exam, courseId, moduleId, examId, navigate])
-  console.log(isLoadingCourse, isLoadingExam, isLoadingModule, course, module, exam, courseId, moduleId, examId)
+
   if (isLoadingCourse || isLoadingExam || isLoadingModule || !exam || !module || !course) {
     return (
       <LayoutWithoutNavigation

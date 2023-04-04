@@ -29,7 +29,6 @@ const TopicPage = () => {
       navigate('/error', { replace: true })
     }
   }, [topic, module, course, isLoadingCourse, isLoadingModule, isLoadingTopic, courseId, moduleId, topicId, navigate])
-  console.log(isLoadingTopic, isLoadingModule, isLoadingCourse, course, module, topic, courseId, moduleId, topicId)
 
   if (
     isLoadingTopic ||
