@@ -69,6 +69,8 @@ fetcher.interceptors.request.use(
 
       // @ts-ignore
       delete options.headers?.Host
+
+      config.headers = options.headers
     }
 
     return config
