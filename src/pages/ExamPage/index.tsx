@@ -88,14 +88,24 @@ const ExamPage = () => {
         const currentModuleIndex = course?.modules?.findIndex((module) => moduleId === module._id)
         const newCurrentModule = course?.modules[(currentModuleIndex as number) + 1]
 
-        await updateCourse({
-          courseId: courseId!,
-          body: {
-            finishedModules: newFinishedModules ? newFinishedModules : [],
-            currentModule: newCurrentModule?._id,
-            currentTopic: newCurrentModule.topics[0]._id
-          }
-        })
+        // no new module left
+        if (!newCurrentModule) {
+          await updateCourse({
+            courseId: courseId!,
+            body: {
+              finishedModules: newFinishedModules ? newFinishedModules : []
+            }
+          })
+        } else {
+          await updateCourse({
+            courseId: courseId!,
+            body: {
+              finishedModules: newFinishedModules ? newFinishedModules : [],
+              currentModule: newCurrentModule?._id,
+              currentTopic: newCurrentModule.topics[0]._id
+            }
+          })
+        }
       }
 
       setShowScore(true)
