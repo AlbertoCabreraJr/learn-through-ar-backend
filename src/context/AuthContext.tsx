@@ -50,10 +50,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         })
 
         localStorage.setItem('aws', JSON.stringify(data.awsCredentials))
-        localStorage.setItem('id_token', JSON.stringify(data.id_token))
+        localStorage.setItem('access_token', JSON.stringify(data.access_token))
+        localStorage.setItem('refresh_token', JSON.stringify(data.refresh_token))
         localStorage.setItem('user', JSON.stringify(data.user))
 
-        dispatch({ type: 'SIGN_IN', token: data.id_token })
+        dispatch({ type: 'SIGN_IN', token: data.access_token })
         setIsLoading(false)
       } catch (error) {
         console.error(error)
@@ -74,33 +75,59 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   React.useEffect(() => {
     const checkStoredAuthState = async () => {
-      let idToken = null
-
       try {
-        idToken = localStorage.getItem('id_token')
+        let access_token = localStorage.getItem('access_token')
 
-        if (!idToken) {
-          dispatch({ type: 'SIGN_OUT', token: null })
+        if (!access_token) {
+          await authValues.signOut()
           return
         }
 
         const { data } = await axios.get(
-          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${JSON.parse(idToken)}`
+          `https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${JSON.parse(access_token)}`
         )
 
         if (isTokenExpired(data)) {
-          dispatch({ type: 'SIGN_OUT', token: null })
+          await handleRefreshAccess()
           return
         }
 
-        dispatch({ type: 'RESTORE_TOKEN', token: idToken })
+        dispatch({ type: 'RESTORE_TOKEN', token: access_token })
       } catch (e) {
-        dispatch({ type: 'SIGN_OUT', token: null })
+        await handleRefreshAccess()
       }
     }
 
     checkStoredAuthState()
   }, [])
+
+  const handleRefreshAccess = async () => {
+    try {
+      const refreshToken = localStorage.getItem('refresh_token')
+
+      if (!refreshToken) {
+        dispatch({ type: 'SIGN_OUT', token: null })
+        return
+      }
+
+      const parsedRefreshToken = JSON.parse(refreshToken)
+
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_BASE_URL}/${process.env.REACT_APP_STAGE}/auth-refresh`,
+        {
+          headers: {
+            Authorization: parsedRefreshToken
+          }
+        }
+      )
+
+      localStorage.setItem('access_token', JSON.stringify(data.access_token))
+
+      dispatch({ type: 'RESTORE_TOKEN', token: data.access_token })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const authValues = React.useMemo(
     () => ({
@@ -109,18 +136,37 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         googleLogin()
       },
       signOut: async () => {
-        setIsLoading(true)
+        try {
+          setIsLoading(true)
 
-        const token = localStorage.getItem('id_token')
-        if (token) {
-          googleLogout()
-          localStorage.removeItem('id_token')
-          localStorage.removeItem('aws')
-          localStorage.removeItem('user')
+          const token = localStorage.getItem('access_token')
+          if (token) {
+            googleLogout()
+            localStorage.removeItem('refresh_token')
+            localStorage.removeItem('access_token')
+            localStorage.removeItem('aws')
+            localStorage.removeItem('user')
+            const parseToken = JSON.parse(token)
+
+            axios.post(
+              'https://oauth2.googleapis.com/revoke',
+              {
+                token: parseToken
+              },
+              {
+                headers: {
+                  'Content-type': 'application/x-www-form-urlencoded'
+                }
+              }
+            )
+          }
+
+          dispatch({ type: 'SIGN_OUT', token: null })
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setIsLoading(false)
         }
-
-        dispatch({ type: 'SIGN_OUT', token: null })
-        setIsLoading(false)
       }
     }),
     [googleLogin]

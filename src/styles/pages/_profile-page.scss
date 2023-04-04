@@ -1,0 +1,23 @@
+@use '../colors' as colors;
+
+.profile-page {
+  padding: 20px;
+  padding-top: 40px;
+
+  .profile-page-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+
+    .profile-page-item-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .profile-page-item-text {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}

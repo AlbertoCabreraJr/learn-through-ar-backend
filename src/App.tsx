@@ -11,6 +11,7 @@ import useIsDesktop from './hooks/useIsDesktop'
 import ErrorPage from './pages/ErrorPage'
 import TopicPage from './pages/TopicPage'
 import ExamPage from './pages/ExamPage'
+import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
   const { isDesktop } = useIsDesktop()
@@ -27,6 +28,7 @@ const App = () => {
             <Routes>
               <Route path='/sign-in' element={<SignInPage />}></Route>
               <Route path='/error' element={<ErrorPage />}></Route>
+              <Route path='/profile' element={<ProfilePage />}></Route>
               <Route path='*' element={<NotFoundPage />}></Route>
               <Route path='/course/:courseId' element={<HomePage />}></Route>
               <Route path='/course/:courseId/module/:moduleId' element={<ModulePage />}></Route>

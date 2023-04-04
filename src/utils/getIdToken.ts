@@ -1,5 +1,5 @@
-const getIdToken = () => {
-  return localStorage.getItem('id_token')
+const getAccessToken = () => {
+  return localStorage.getItem('access_token')
 }
 
-export default getIdToken
+export default getAccessToken
