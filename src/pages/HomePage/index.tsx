@@ -15,7 +15,7 @@ const HomePage = () => {
       navigate('/error', { replace: true })
     }
   }, [isLoading, courseId, course, navigate])
-
+  console.log('//')
   if (isLoading || !course || !courseId) {
     return (
       <LayoutWithNavigation>
