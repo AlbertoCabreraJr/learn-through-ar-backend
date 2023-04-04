@@ -61,8 +61,6 @@ fetcher.interceptors.request.use(
         credentials
       })
 
-      console.log(signedRequest)
-
       const options = {
         headers: {
           ...signedRequest.headers,
