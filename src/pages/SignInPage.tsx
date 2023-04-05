@@ -17,7 +17,7 @@ const SignInPage = () => {
     }
   }, [userToken, isLoading, navigate, user])
 
-  if (isLoading) {
+  if (isLoading || !user || !userToken) {
     return <Loader />
   }
 
