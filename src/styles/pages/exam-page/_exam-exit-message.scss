@@ -1,0 +1,62 @@
+@use '../../colors' as colors;
+
+.exam-exit-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: colors.$background-color;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+
+  .logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .title {
+    color: colors.$secondary;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .subtitle {
+    color: colors.$secondary;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+
+    .no,
+    .yes {
+      padding: 20px;
+      border-radius: 20px;
+      border: 0;
+      width: 100px;
+      color: colors.$text-light;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .no {
+      background-color: colors.$primary;
+    }
+
+    .yes {
+      background-color: colors.$error;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import useExam from '../../hooks/useExam'
 import useModule from '../../hooks/useModule'
 import Choice from '../../types/Choice'
 import Exam from '../../types/Exam'
+import ExamExitMessage from './ExamExitMessage'
 import ExamQuestion from './ExamQuestion'
 import ExamTakenMessage from './ExamTakenMessage'
 import Score from './Score'
@@ -22,6 +23,7 @@ const ExamPage = () => {
   const [showScore, setShowScore] = useState(false)
   const [progress, setProgress] = useState(0)
   const [showExamTakenMessage, setShowExamTakenMessage] = useState(exam?.finished)
+  const [showExitMessage, setShowExitMessage] = useState(false)
 
   useEffect(() => {
     setShowExamTakenMessage(exam?.finished)
@@ -124,6 +126,12 @@ const ExamPage = () => {
 
   return (
     <>
+      {showExitMessage && (
+        <ExamExitMessage
+          onClickNo={() => setShowExitMessage(false)}
+          onClickYes={() => navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })}
+        />
+      )}
       {showExamTakenMessage && <ExamTakenMessage onClose={() => setShowExamTakenMessage(false)} />}
       {showScore && (
         <Score
@@ -134,7 +142,9 @@ const ExamPage = () => {
         />
       )}
       <LayoutWithoutNavigation
-        onClickBack={() => navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })}
+        onClickBack={() => {
+          setShowExitMessage(true)
+        }}
       >
         <ProgressBar percentage={calculatePercentageProgress({ exam: exam!, progress })} />
         <div className='exam-page'>
