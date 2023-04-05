@@ -9,6 +9,7 @@ import useModule from '../../hooks/useModule'
 import Choice from '../../types/Choice'
 import Exam from '../../types/Exam'
 import ExamQuestion from './ExamQuestion'
+import ExamTakenMessage from './ExamTakenMessage'
 import Score from './Score'
 
 const ExamPage = () => {
@@ -20,8 +21,11 @@ const ExamPage = () => {
   const [score, setScore] = useState(0)
   const [showScore, setShowScore] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [showExamTakenMessage, setShowExamTakenMessage] = useState(exam?.finished)
 
   useEffect(() => {
+    setShowExamTakenMessage(exam?.finished)
+
     if (
       !isLoadingCourse &&
       !isLoadingExam &&
@@ -120,6 +124,7 @@ const ExamPage = () => {
 
   return (
     <>
+      {showExamTakenMessage && <ExamTakenMessage onClose={() => setShowExamTakenMessage(false)} />}
       {showScore && (
         <Score
           examTitle={exam.title}
