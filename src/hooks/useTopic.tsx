@@ -29,16 +29,12 @@ const useTopic = (topicId: string) => {
 
   const updateTopic = async ({ topicId, body }: { topicId: string; body: { finished: boolean } }) => {
     try {
-      setIsLoading(true)
-
       await fetcher.put(`/topics/${topicId}`, {
         ...body
       })
     } catch (error) {
       console.error(error)
       navigate('/error')
-    } finally {
-      setIsLoading(false)
     }
   }
 

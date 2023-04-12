@@ -1,0 +1,105 @@
+@use '../../../colors' as colors;
+
+.module-1-topic-1 {
+  padding: 20px;
+  position: relative;
+  height: 80vh;
+
+  .module-1-topic-1-title {
+    color: colors.$secondary;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .module-1-topic-1-subtitle {
+    color: colors.$secondary;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .module-1-topic-1-instructions {
+    color: colors.$secondary;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.module-1-topic-1-action-buttons {
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.module-1-topic-1-action-button {
+  padding: 20px;
+  background-color: colors.$primary;
+  border-radius: 20px;
+  border: 0;
+  color: colors.$text-light;
+  max-width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.module-1-topic-1-action-button:hover,
+.module-1-topic-1-action-button:focus,
+.module-1-topic-1-action-button:active {
+  background-color: colors.$green;
+}
+
+.module-1-topic-1-success-message {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+
+  .success-message-content {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
+    // top: 40%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // width: 80%;
+    margin-top: 40px;
+    background-color: colors.$background-color;
+    border-radius: 20px;
+    padding: 20px 60px;
+
+    .success-message-text {
+      margin-bottom: 20px;
+      color: colors.$secondary;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .success-message-button {
+      margin-top: 10px;
+      background-color: colors.$primary;
+      border-radius: 20px;
+      border: 0;
+      color: #f3fcec;
+      max-width: 100%;
+      padding: 20px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
+}

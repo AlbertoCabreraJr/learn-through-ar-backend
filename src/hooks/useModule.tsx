@@ -34,16 +34,12 @@ const useModule = (moduleId: string) => {
     body: { progress?: number; finished?: boolean }
   }) => {
     try {
-      setIsLoading(true)
-
       await fetcher.put(`/modules/${moduleId}`, {
         ...body
       })
     } catch (error) {
       console.error(error)
       navigate('/error', { replace: true })
-    } finally {
-      setIsLoading(false)
     }
   }
 

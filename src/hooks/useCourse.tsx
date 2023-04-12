@@ -40,16 +40,12 @@ const useCourse = (courseId: string) => {
     }
   }) => {
     try {
-      setIsLoading(true)
-
       await fetcher.put(`/courses/${courseId}`, {
         ...body
       })
     } catch (error) {
       console.error(error)
       navigate('/error', { replace: true })
-    } finally {
-      setIsLoading(false)
     }
   }
 
