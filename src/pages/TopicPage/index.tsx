@@ -8,6 +8,8 @@ import useTopic from '../../hooks/useTopic'
 import Module1Topic1 from './module-1-topics/Module1Topic1'
 import Module1Topic2 from './module-1-topics/Module1Topic2'
 import Module1Topic3 from './module-1-topics/Module1Topic3'
+import Module2Topic1 from './module-2-topics/Module2Topic1'
+import Module3Topic1 from './module-3-topics/Module3Topic1'
 
 const TopicPage = () => {
   const navigate = useNavigate()
@@ -85,17 +87,34 @@ const TopicPage = () => {
           return <Module1Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
         }
         if (topic.topicNumber === 2) {
-          return <Module1Topic2 />
+          return <Module1Topic2 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
         }
         if (topic.topicNumber === 3) {
-          return <Module1Topic3 />
+          return <Module1Topic3 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
         }
         return null
 
       case 2:
+        if (topic.topicNumber === 1) {
+          return <Module2Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+        }
+
         return null
 
       case 3:
+        if (topic.topicNumber === 1) {
+          return (
+            <Module3Topic1
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={async () => {
+                await handleFinishTopic()
+                navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
+              }}
+            />
+          )
+        }
+
         return null
 
       case 4:

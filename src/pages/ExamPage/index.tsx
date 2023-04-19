@@ -76,6 +76,8 @@ const ExamPage = () => {
         return
       }
 
+      setShowScore(true)
+
       await updateExam({
         examId: examId!,
         body: {

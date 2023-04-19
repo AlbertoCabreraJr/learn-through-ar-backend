@@ -117,7 +117,7 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
       <div className='module-1-topic-1'>
         <div className='module-1-topic-1-title'>Objective</div>
         <div className='module-1-topic-1-subtitle'>
-          Welcome! Before entering the AR environment, read these simple instructions.
+          Welcome! Before entering the AR environment, read these instructions.
         </div>
         <div className='module-1-topic-1-instructions'>
           <div>1. When you enter the AR environment, you will be presented a 3D model.</div>
