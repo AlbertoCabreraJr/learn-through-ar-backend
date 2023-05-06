@@ -1,23 +1,16 @@
-import { Box, useGLTF } from '@react-three/drei'
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
-import { Controllers, ARButton, XR, toggleSession } from '@react-three/xr'
-import React, { Suspense, useEffect, useReducer, useRef, useState } from 'react'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Controllers, ARButton, XR } from '@react-three/xr'
+import React, { useEffect, useRef, useState } from 'react'
 import { AnimationMixer, Vector3 } from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import loadGLTF from '../../../../utils/loadGLTF'
+import Instructions from './Instructions'
+import SuccessMessage from './SuccessMessage'
+import CustomARButton from './CustomARButton'
 
 type Props = {
   onFinish: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export const loadGLTF = (path: string) => {
-  return new Promise((resolve, reject) => {
-    const loader = new GLTFLoader()
-    loader.load(path, (gltf) => {
-      resolve(gltf)
-    })
-  })
 }
 
 const Model = ({ animationIndex }: { animationIndex: number }) => {
@@ -108,75 +101,6 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
     }
   }, [areActionButtonsClick.button1, areActionButtonsClick.button2, areActionButtonsClick.button3])
 
-  const renderInstructions = () => {
-    if (hasEnterAr) {
-      return null
-    }
-
-    return (
-      <div className='module-1-topic-1'>
-        <div className='module-1-topic-1-title'>Objective</div>
-        <div className='module-1-topic-1-subtitle'>
-          Welcome! Before entering the AR environment, read these instructions.
-        </div>
-        <div className='module-1-topic-1-instructions'>
-          <div>1. When you enter the AR environment, you will be presented a 3D model.</div>
-          <div>2. You will see 3 buttons, each representing a different action the 3D model will do.</div>
-          <div>3. Tap all 3 buttons to complete the task and pass.</div>
-          <div>4. Tap ‘Enter AR’ below. Enjoy!</div>
-        </div>
-      </div>
-    )
-  }
-
-  const renderArButton = () => {
-    if (areAllActionButtonsClicked) {
-      return (
-        <ARButton
-          style={{
-            backgroundColor: '#00a6fb',
-            borderRadius: '20px',
-            border: '0',
-            color: '#f3fcec',
-            maxWidth: '100%',
-            padding: '20px',
-            fontWeight: '700',
-            fontSize: '20px',
-            position: 'absolute',
-            bottom: '20px',
-            left: '20px',
-            right: '20px'
-          }}
-        >
-          Exit AR
-        </ARButton>
-      )
-    }
-
-    if (hasEnterAr) {
-      return null
-    }
-
-    return (
-      <ARButton
-        style={{
-          backgroundColor: '#00a6fb',
-          borderRadius: '20px',
-          border: '0',
-          color: '#f3fcec',
-          maxWidth: '100%',
-          padding: '20px',
-          fontWeight: '700',
-          fontSize: '20px',
-          position: 'absolute',
-          bottom: '20px',
-          left: '20px',
-          right: '20px'
-        }}
-      />
-    )
-  }
-
   const renderActionButtons = () => {
     if (!hasEnterAr) {
       return null
@@ -215,33 +139,11 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
     )
   }
 
-  const renderSuccessMessage = () => {
-    if (!showSuccessMessage) {
-      return null
-    }
-
-    return (
-      <div className='module-1-topic-1-success-message'>
-        <div className='success-message-content'>
-          <div className='success-message-text'>
-            You've just experienced programming by giving instructions to a 3D model on what to do.
-          </div>
-          <div className='success-message-text'>
-            Essentially, programming is crafting or writing instructions for computers to complete tasks.
-          </div>
-          <button className='success-message-button' onClick={() => setShowSuccessMessage(false)}>
-            Close
-          </button>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <>
-      {renderSuccessMessage()}
-      {renderInstructions()}
-      {renderArButton()}
+    <div className='module-1-topic-1'>
+      <SuccessMessage showSuccessMessage={showSuccessMessage} setShowSuccessMessage={setShowSuccessMessage} />
+      <Instructions hasEnterAr={hasEnterAr} />
+      <CustomARButton isFinish={areAllActionButtonsClicked} hasEnterAr={hasEnterAr} />
       <Canvas>
         <XR onSessionStart={() => setHasEnterAr(true)} onSessionEnd={() => setHasEnterAr(false)}>
           <ambientLight intensity={0.5} />
@@ -251,7 +153,7 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
         </XR>
       </Canvas>
       {renderActionButtons()}
-    </>
+    </div>
   )
 }
 
