@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Controllers, ARButton, XR } from '@react-three/xr'
+import { Controllers, XR } from '@react-three/xr'
 import React, { useEffect, useRef, useState } from 'react'
 import { AnimationMixer, Vector3 } from 'three'
 import loadGLTF from '../../../../utils/loadGLTF'

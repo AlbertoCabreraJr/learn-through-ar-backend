@@ -4,8 +4,12 @@ import Course from '../../types/Course'
 import { useNavigate } from 'react-router-dom'
 import Topic from '../../types/Topic'
 import Module from '../../types/Module'
+import useSound from 'use-sound'
+
+const soundTap = require('../../assets/sounds/sound-tap.mp3')
 
 const TopicListItem = ({ topic, course, module }: { topic: Topic; course: Course; module: Module }) => {
+  const [playSound] = useSound(soundTap)
   const navigate = useNavigate()
 
   let topicListItemClassname = 'topic-list-item'
@@ -27,6 +31,7 @@ const TopicListItem = ({ topic, course, module }: { topic: Topic; course: Course
           return
         }
 
+        playSound()
         navigate(`/course/${course._id}/module/${module._id}/topic/${topic._id}`)
       }}
     >

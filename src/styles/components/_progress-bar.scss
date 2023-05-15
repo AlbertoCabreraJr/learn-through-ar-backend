@@ -9,7 +9,7 @@
   .progress-bar-inner {
     height: 100%;
     background-color: colors.$primary;
-    animation: progress-animation 1s linear;
-    transition: width 1s ease-in-out;
+    animation: progress-animation 0.5s linear;
+    transition: width 0.5s ease-in-out;
   }
 }

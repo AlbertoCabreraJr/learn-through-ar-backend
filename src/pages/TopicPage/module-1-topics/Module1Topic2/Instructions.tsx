@@ -22,6 +22,10 @@ const Instructions: React.FC<InstructionProps> = ({ hasEnterAr }) => {
           in the history of programming
         </div>
         <div>6. Tap ‘Enter AR’ below. Enjoy!</div>
+        <div>
+          Note: Please ensure that your phone or camera is held upright if you're unable to see the models in the
+          augmented reality (AR) environment.
+        </div>
       </div>
     </div>
   )
