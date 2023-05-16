@@ -1,0 +1,299 @@
+@use '../../../colors' as colors;
+
+.module-4-topic-1 {
+  .module-4-topic-1-instructions-container {
+    padding: 20px;
+    position: relative;
+    height: 80vh;
+
+    .module-4-topic-1-title {
+      color: colors.$secondary;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .module-4-topic-1-subtitle {
+      color: colors.$secondary;
+      font-weight: 500;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+  }
+
+  .inside-ar-instructions {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    right: 20px;
+    z-index: 999;
+
+    .content-container {
+      background-color: colors.$background-color;
+      border-radius: 20px;
+      border: 2px solid colors.$primary;
+      padding-top: 20px;
+
+      .content-body {
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+
+        .start-button {
+          width: 64px;
+          height: 64px;
+          border-radius: 100px;
+          font-size: 18px;
+          font-weight: 700;
+          padding: 28px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: colors.$primary;
+          box-shadow: rgba(0, 167, 251, 0.8) 0px 1px 2px 0px, rgba(0, 167, 251, 0.85) 0px 1px 3px 1px;
+        }
+
+        .start-button:active {
+          box-shadow: none !important;
+          user-select: none;
+          transform: scale(0.7); /* Add this line to apply the scaling effect */
+        }
+
+        .left-content {
+          width: 20%;
+          display: flex;
+          justify-content: center;
+
+          .icon {
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        .center-content {
+          width: 80%;
+          flex: 4;
+          text-align: center;
+          word-wrap: break-word;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+
+          .title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: colors.$secondary;
+          }
+
+          .details {
+            color: colors.$secondary;
+          }
+
+          .close-button {
+            margin-top: 16px;
+            background-color: #00a6fb;
+            border-radius: 10px;
+            border: 0;
+            color: #f3fcec;
+            max-width: 70%;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: rgba(0, 167, 251, 0.3) 0px 1px 2px 0px, rgba(0, 167, 251, 0.15) 0px 1px 3px 1px;
+          }
+        }
+
+        .right-content {
+          width: 20%;
+          display: flex;
+          justify-content: center;
+
+          .icon {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  .success-message {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    right: 20px;
+    z-index: 999;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: colors.$background-color;
+    border-radius: 20px;
+
+    .title {
+      font-weight: 700;
+      font-size: 22px;
+      color: colors.$secondary;
+      margin-bottom: 6px;
+    }
+    .sub-title {
+      font-weight: 500;
+      font-size: 18px;
+      color: colors.$secondary;
+      margin-bottom: 20px;
+    }
+
+    .close-button {
+      background-color: #00a6fb;
+      border-radius: 10px;
+      border: 0;
+      color: #f3fcec;
+      max-width: 100%;
+      padding: 10px 30px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: rgba(0, 167, 251, 0.3) 0px 1px 2px 0px, rgba(0, 167, 251, 0.15) 0px 1px 3px 1px;
+    }
+  }
+
+  .error-message {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    right: 20px;
+    z-index: 999;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: colors.$background-color;
+    border-radius: 20px;
+
+    .title {
+      font-weight: 700;
+      font-size: 22px;
+      color: colors.$secondary;
+      margin-bottom: 6px;
+    }
+    .sub-title {
+      font-weight: 500;
+      font-size: 18px;
+      color: colors.$secondary;
+      margin-bottom: 20px;
+    }
+
+    .close-button {
+      background-color: #00a6fb;
+      border-radius: 10px;
+      border: 0;
+      color: #f3fcec;
+      max-width: 100%;
+      padding: 10px 30px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: rgba(0, 167, 251, 0.3) 0px 1px 2px 0px, rgba(0, 167, 251, 0.15) 0px 1px 3px 1px;
+    }
+  }
+
+  .containers {
+    position: absolute;
+    bottom: 120px;
+    left: 10px;
+    right: 10px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 100px;
+    }
+
+    .finished {
+      padding: 10px 16px;
+      border-radius: 20px;
+      background-color: colors.$secondary;
+
+      .title {
+        font-weight: 500;
+        font-size: 16px;
+        color: colors.$text-light;
+        margin-bottom: 6px;
+      }
+
+      .check-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .in-progress {
+      padding: 10px 16px;
+      border-radius: 20px;
+      background-color: colors.$background-color;
+      border: 1px solid colors.$primary;
+
+      .title {
+        font-weight: 500;
+        font-size: 16px;
+        color: colors.$primary;
+        margin-bottom: 6px;
+        text-align: center;
+      }
+
+      .value {
+        font-weight: 700;
+        font-size: 20px;
+        color: colors.$primary;
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .camera-button-container {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    right: 10px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+      width: 40px;
+      height: 40px;
+      border-radius: 100px;
+      background-color: colors.$background-color;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    z-index: 9999; /* Set a high z-index to ensure it appears on top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
