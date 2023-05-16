@@ -1,5 +1,43 @@
 @use '../../../colors' as colors;
 
-.module_1_topic_3 {
+.module-1-topic-3 {
   padding: 20px;
+  position: relative;
+  height: 80vh;
+
+  .module-1-topic-3-title {
+    color: colors.$secondary;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .module-1-topic-3-subtitle {
+    color: colors.$secondary;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .module-1-topic-3-content {
+    color: colors.$secondary;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    line-height: 30px;
+  }
+
+  .module-1-topic-3-done-button {
+    background-color: colors.$primary;
+    border-radius: 20px;
+    border: 0;
+    color: colors.$text-light;
+    width: 100%;
+    padding: 20px;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 20px 0;
+  }
 }
