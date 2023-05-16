@@ -2,9 +2,6 @@ import check from '../../assets/check.svg'
 import { useNavigate } from 'react-router-dom'
 import Module from '../../types/Module'
 import Course from '../../types/Course'
-import useSound from 'use-sound'
-
-const soundTap = require('../../assets/sounds/sound-tap.mp3')
 
 type ModuleListItemProps = {
   module: Module
@@ -43,13 +40,11 @@ const ModuleListItemFooter = ({ module, course }: { module: Module; course: Cour
 }
 
 const ModuleListItemButton = ({ module, course }: { module: Module; course: Course }) => {
-  const [playSound] = useSound(soundTap)
   const navigate = useNavigate()
 
   if (shouldDisableModule(module, course)) return null
 
   const handleClick = async (e: any) => {
-    playSound()
     e.preventDefault()
     navigate(`/course/${course._id}/module/${module._id}`)
   }
