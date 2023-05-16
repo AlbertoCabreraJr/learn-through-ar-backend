@@ -11,6 +11,8 @@ import Module1Topic3 from './module-1-topics/Module1Topic3'
 import Module2Topic1 from './module-2-topics/Module2Topic1'
 import Module3Topic1 from './module-3-topics/Module3Topic1'
 import Module4Topic1 from './module-4-topics/Module4Topic1'
+import Module5Topic1 from './module-5-topics/Module5Topic1'
+import Module5Topic2 from './module-5-topics/Module5Topic2'
 
 const TopicPage = () => {
   const navigate = useNavigate()
@@ -126,6 +128,13 @@ const TopicPage = () => {
         return null
 
       case 5:
+        if (topic.topicNumber === 1) {
+          return <Module5Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+        }
+        if (topic.topicNumber === 2) {
+          return <Module5Topic2 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+        }
+
         return null
 
       default:
