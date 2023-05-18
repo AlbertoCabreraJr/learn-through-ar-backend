@@ -1,0 +1,193 @@
+@use '../../../colors' as colors;
+
+.module-5-topic-2 {
+  .module-5-topic-2-instructions-container {
+    padding: 20px;
+    position: relative;
+    height: 80vh;
+
+    .module-5-topic-2-title {
+      color: colors.$secondary;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .module-5-topic-2-subtitle {
+      color: colors.$secondary;
+      font-weight: 500;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+  }
+
+  .inside-ar-instructions {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    right: 20px;
+    z-index: 999;
+
+    .content-container {
+      background-color: colors.$background-color;
+      border-radius: 20px;
+      border: 2px solid colors.$primary;
+      padding-top: 20px;
+
+      .content-body {
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+
+        .start-button {
+          width: 64px;
+          height: 64px;
+          border-radius: 100px;
+          font-size: 18px;
+          font-weight: 700;
+          padding: 28px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: colors.$primary;
+          box-shadow: rgba(0, 167, 251, 0.8) 0px 1px 2px 0px, rgba(0, 167, 251, 0.85) 0px 1px 3px 1px;
+        }
+
+        .start-button:active {
+          box-shadow: none !important;
+          user-select: none;
+          transform: scale(0.7); /* Add this line to apply the scaling effect */
+        }
+
+        .left-content {
+          width: 20%;
+          display: flex;
+          justify-content: center;
+
+          .icon {
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        .center-content {
+          width: 80%;
+          flex: 4;
+          text-align: center;
+          word-wrap: break-word;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+
+          .title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: colors.$secondary;
+          }
+
+          .details {
+            color: colors.$secondary;
+          }
+
+          .close-button {
+            margin-top: 16px;
+            background-color: #00a6fb;
+            border-radius: 10px;
+            border: 0;
+            color: #f3fcec;
+            max-width: 70%;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: rgba(0, 167, 251, 0.3) 0px 1px 2px 0px, rgba(0, 167, 251, 0.15) 0px 1px 3px 1px;
+          }
+        }
+
+        .right-content {
+          width: 20%;
+          display: flex;
+          justify-content: center;
+
+          .icon {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  .success-message {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    right: 20px;
+    z-index: 999;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: colors.$background-color;
+    border-radius: 20px;
+
+    .title {
+      font-weight: 700;
+      font-size: 22px;
+      color: colors.$secondary;
+      margin-bottom: 6px;
+    }
+    .sub-title {
+      font-weight: 500;
+      font-size: 18px;
+      color: colors.$secondary;
+      margin-bottom: 20px;
+    }
+
+    .close-button {
+      background-color: #00a6fb;
+      border-radius: 10px;
+      border: 0;
+      color: #f3fcec;
+      max-width: 100%;
+      padding: 10px 30px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: rgba(0, 167, 251, 0.3) 0px 1px 2px 0px, rgba(0, 167, 251, 0.15) 0px 1px 3px 1px;
+    }
+  }
+
+  .module-5-topic-2-action-buttons {
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .module-5-topic-2-action-button {
+    padding: 20px;
+    background-color: colors.$primary;
+    border-radius: 20px;
+    border: 0;
+    color: colors.$text-light;
+    max-width: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .module-5-topic-2-action-button:hover,
+  .module-5-topic-2-action-button:focus,
+  .module-5-topic-2-action-button:active {
+    background-color: colors.$green;
+  }
+}
