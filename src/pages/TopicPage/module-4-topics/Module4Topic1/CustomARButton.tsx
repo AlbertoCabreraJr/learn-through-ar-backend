@@ -57,7 +57,7 @@ const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr, o
         right: '20px'
       }}
     >
-      Start AR
+      Enter AR
     </div>
   )
 }

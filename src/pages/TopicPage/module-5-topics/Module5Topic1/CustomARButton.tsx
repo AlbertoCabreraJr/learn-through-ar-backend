@@ -1,15 +1,19 @@
-import { ARButton } from '@react-three/xr'
+import React from 'react'
 
-type InstructionProps = {
-  hasEnterAr: boolean
+type CustomARButtonProps = {
   isFinish: boolean
+  hasEnterAr: boolean
+  onStart: () => void
+  onExit: () => void
 }
 
-const CustomARButton: React.FC<InstructionProps> = ({ hasEnterAr, isFinish }) => {
+const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr, onStart, onExit }) => {
   if (isFinish) {
     return (
-      <ARButton
+      <div
+        onClick={onExit}
         style={{
+          textAlign: 'center',
           backgroundColor: '#00a6fb',
           borderRadius: '20px',
           border: '0',
@@ -25,7 +29,7 @@ const CustomARButton: React.FC<InstructionProps> = ({ hasEnterAr, isFinish }) =>
         }}
       >
         Exit AR
-      </ARButton>
+      </div>
     )
   }
 
@@ -34,8 +38,10 @@ const CustomARButton: React.FC<InstructionProps> = ({ hasEnterAr, isFinish }) =>
   }
 
   return (
-    <ARButton
+    <div
+      onClick={onStart}
       style={{
+        textAlign: 'center',
         backgroundColor: '#00a6fb',
         borderRadius: '20px',
         border: '0',
@@ -49,7 +55,9 @@ const CustomARButton: React.FC<InstructionProps> = ({ hasEnterAr, isFinish }) =>
         left: '20px',
         right: '20px'
       }}
-    />
+    >
+      Enter AR
+    </div>
   )
 }
 
