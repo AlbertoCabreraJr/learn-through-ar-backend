@@ -96,8 +96,8 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
     const areAllActionButtonsClicked = Object.values(areActionButtonsClick).every((value) => value === true)
 
     if (areAllActionButtonsClicked) {
-      setShowSuccessMessage(true)
       onFinish()
+      setShowSuccessMessage(true)
     }
   }, [areActionButtonsClick.button1, areActionButtonsClick.button2, areActionButtonsClick.button3])
 
