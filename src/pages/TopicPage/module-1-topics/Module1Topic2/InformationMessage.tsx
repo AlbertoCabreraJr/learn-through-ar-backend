@@ -21,7 +21,9 @@ const InformationMessage: React.FC<SuccessMessageProps> = ({ year, information, 
 }
 
 const PlaceHolderMessage = () => {
-  return <div className='placeholder-message'>Double Tap on a year to show information</div>
+  return (
+    <div className='placeholder-message'>Look up in the AR environment. Double Tap on a year to show information</div>
+  )
 }
 
 export default InformationMessage
