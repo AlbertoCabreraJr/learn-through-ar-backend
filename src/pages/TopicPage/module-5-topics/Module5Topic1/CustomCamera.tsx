@@ -3,56 +3,49 @@ import React, { useEffect } from 'react'
 type CustomCameraProps = {
   showContent: boolean
   hasEnterAr: boolean
-  updateGesturePrediction: () => void
-  gestureEstimator: any
-  handposeModel: any
-  videoRef: any
-  setShouldStartTimer: any
+  videoRef: React.RefObject<HTMLVideoElement>
+  onCameraLoaded: () => void
 }
 
-const CustomCamera: React.FC<CustomCameraProps> = ({
-  hasEnterAr,
-  showContent,
-  updateGesturePrediction,
-  gestureEstimator,
-  handposeModel,
-  videoRef,
-  setShouldStartTimer
-}) => {
+const CustomCamera: React.FC<CustomCameraProps> = ({ hasEnterAr, showContent, onCameraLoaded, videoRef }) => {
   if (!hasEnterAr || !showContent) {
     return null
   }
 
   useEffect(() => {
-    if (handposeModel && gestureEstimator && videoRef.current) {
-      updateGesturePrediction()
-    }
-  }, [handposeModel, gestureEstimator, videoRef.current])
-
-  useEffect(() => {
-    const startCamera = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: {
-            facingMode: 'user'
+    // Check if the browser supports media devices
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      // Access the camera and stream the video
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream
+            onCameraLoaded()
           }
         })
-
-        setShouldStartTimer(true)
-
-        // @ts-ignore
-        videoRef.current.srcObject = stream
-      } catch (error) {
-        console.error('Error accessing camera:', error)
-      }
+        .catch((error) => {
+          console.error('Error accessing camera:', error)
+        })
+    } else {
+      console.error('Media devices are not supported.')
     }
 
-    startCamera()
+    // Cleanup: stop streaming and remove the video source
+    return () => {
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream
+        stream.getTracks().forEach((track) => {
+          track.stop()
+        })
+        videoRef.current.srcObject = null
+      }
+    }
   }, [])
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <video ref={videoRef} width={350} height={350} autoPlay />
+    <div style={{ display: 'flex', justifyContent: 'center', height: '40vh' }}>
+      <video ref={videoRef} autoPlay height={400} style={{ width: '100%', objectFit: 'cover' }} />
     </div>
   )
 }

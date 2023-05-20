@@ -160,43 +160,91 @@
     }
   }
 
-  .scores {
-    display: flex;
-    justify-content: center;
-    padding: 20px 40px;
-    gap: 60px;
+  .information {
+    background-color: colors.$secondary;
+    padding: 20px;
+    position: relative;
+    height: 60vh;
 
-    .user-score,
-    .computer-score {
+    .hands {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      justify-content: center;
-      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      .hand {
+        padding: 10px 20px;
+        text-align: center;
+        color: colors.$text-light;
+        width: 100px;
+        height: 100px;
+        border-radius: 20px;
+
+        .title {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 20px;
+        }
+
+        .value {
+          font-size: 40px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .timer {
+      text-align: center;
 
       .title {
-        font-weight: 500;
-        font-size: 22px;
+        font-size: 24px;
+        color: colors.$text-light;
+        font-weight: 600;
       }
 
       .value {
+        font-size: 50px;
+        color: colors.$text-light;
         font-weight: 700;
-        font-size: 30px;
       }
     }
-  }
 
-  .timer {
-    text-align: center;
+    .scores {
+      padding: 10px;
+      border-radius: 20px;
 
-    .title {
-      font-weight: 500;
-      font-size: 28px;
-    }
+      .title {
+        text-align: center;
+        font-size: 24px;
+        color: colors.$text-light;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
 
-    .value {
-      font-weight: 700;
-      font-size: 40px;
+      .value {
+        display: flex;
+        justify-content: space-between;
+
+        .user-score,
+        .computer-score {
+          text-align: center;
+          width: 100px;
+          height: 100px;
+
+          .title {
+            font-size: 18px;
+            color: colors.$text-light;
+            font-weight: 600;
+            margin-bottom: 10px;
+          }
+
+          .value-score {
+            font-size: 36px;
+            color: colors.$text-light;
+            font-weight: 700;
+            text-align: center;
+          }
+        }
+      }
     }
   }
 }
