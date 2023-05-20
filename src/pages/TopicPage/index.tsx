@@ -81,6 +81,8 @@ const TopicPage = () => {
         currentTopic: newCurrentTopic?._id
       }
     })
+
+    navigate(`/course/${courseId}`, { replace: true })
   }
 
   const renderTopic = (): React.ReactNode => {
@@ -106,16 +108,7 @@ const TopicPage = () => {
 
       case 3:
         if (topic.topicNumber === 1) {
-          return (
-            <Module3Topic1
-              hasEnterAr={hasEnterAr}
-              setHasEnterAr={setHasEnterAr}
-              onFinish={async () => {
-                await handleFinishTopic()
-                navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
-              }}
-            />
-          )
+          return <Module3Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
         }
 
         return null
