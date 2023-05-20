@@ -6,6 +6,9 @@ import loadGLTF from '../../../../utils/loadGLTF'
 import Instructions from './Instructions'
 import SuccessMessage from './SuccessMessage'
 import CustomARButton from './CustomARButton'
+import useSound from 'use-sound'
+
+const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
 type Props = {
   onFinish: () => void
@@ -66,6 +69,8 @@ const Model = ({ animationIndex }: { animationIndex: number }) => {
 }
 
 const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr }) => {
+  const [playSoundSuccess] = useSound(soundSuccess)
+
   const [animationIndex, setAnimationIndex] = useState(0)
   const [areActionButtonsClick, setAreActionButtonsClick] = useState({
     button1: false,
@@ -96,6 +101,7 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
     const areAllActionButtonsClicked = Object.values(areActionButtonsClick).every((value) => value === true)
 
     if (areAllActionButtonsClicked) {
+      playSoundSuccess()
       onFinish()
       setShowSuccessMessage(true)
     }

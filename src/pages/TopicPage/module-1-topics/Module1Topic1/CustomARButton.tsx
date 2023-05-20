@@ -7,10 +7,6 @@ type CustomARButtonProps = {
 }
 
 const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr }) => {
-  if (hasEnterAr) {
-    return null
-  }
-
   if (isFinish) {
     return (
       <ARButton
@@ -26,12 +22,17 @@ const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr })
           position: 'absolute',
           bottom: '20px',
           left: '20px',
-          right: '20px'
+          right: '20px',
+          zIndex: 999
         }}
       >
         Exit AR
       </ARButton>
     )
+  }
+
+  if (hasEnterAr) {
+    return null
   }
 
   return (
@@ -48,7 +49,8 @@ const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr })
         position: 'absolute',
         bottom: '20px',
         left: '20px',
-        right: '20px'
+        right: '20px',
+        zIndex: 999
       }}
     />
   )

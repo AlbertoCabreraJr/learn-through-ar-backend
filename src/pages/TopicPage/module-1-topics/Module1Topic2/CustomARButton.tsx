@@ -21,7 +21,8 @@ const CustomARButton: React.FC<InstructionProps> = ({ hasEnterAr, isFinish }) =>
           position: 'absolute',
           bottom: '20px',
           left: '20px',
-          right: '20px'
+          right: '20px',
+          zIndex: 999
         }}
       >
         Exit AR
@@ -47,7 +48,8 @@ const CustomARButton: React.FC<InstructionProps> = ({ hasEnterAr, isFinish }) =>
         position: 'absolute',
         bottom: '20px',
         left: '20px',
-        right: '20px'
+        right: '20px',
+        zIndex: 999
       }}
     />
   )
