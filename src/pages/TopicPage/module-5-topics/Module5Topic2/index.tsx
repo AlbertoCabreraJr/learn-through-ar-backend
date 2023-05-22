@@ -91,7 +91,6 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       playSound()
       setIsFinished(true)
       onFinish()
-      return
     }
 
     setCommandsStatus(newCommandsStatus)
