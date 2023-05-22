@@ -37,13 +37,16 @@ const SignInPage = () => {
           <img src={google} alt='Google logo' />
           <div className='text'>Sign-in with google</div>
         </button>
-        <a
-          className='supported-devices-link'
-          target='_blank'
-          href='https://developers.google.com/ar/devices#google_play_devices'
-        >
-          See supported devices
-        </a>
+        <div className='footer'>
+          <div className='device-supported-text'>Make sure your device is supported</div>
+          <a
+            className='supported-devices-link'
+            target='_blank'
+            href='https://developers.google.com/ar/devices#google_play_devices'
+          >
+            See supported devices
+          </a>
+        </div>
       </div>
     </Suspense>
   )
