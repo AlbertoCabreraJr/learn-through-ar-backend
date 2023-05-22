@@ -137,7 +137,7 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   const navigate = useNavigate()
   const [playSoundSuccess] = useSound(soundSuccess)
   const [isFinish, setIsFinish] = useState(false)
-  const WINNER_SCORE = 1
+  const WINNER_SCORE = 5
 
   const determineWinner = (userGesture: string | null, computerGesture: string | null): string => {
     if (userGesture === computerGesture) {
