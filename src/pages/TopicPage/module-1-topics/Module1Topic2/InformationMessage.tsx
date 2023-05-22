@@ -1,12 +1,11 @@
 type SuccessMessageProps = {
   information: string
   hasEnterAr: boolean
-  isFinish: boolean
   year: number
 }
 
-const InformationMessage: React.FC<SuccessMessageProps> = ({ year, information, hasEnterAr, isFinish }) => {
-  if (!hasEnterAr || isFinish) {
+const InformationMessage: React.FC<SuccessMessageProps> = ({ year, information, hasEnterAr }) => {
+  if (!hasEnterAr) {
     return null
   }
 

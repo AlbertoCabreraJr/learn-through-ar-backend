@@ -81,8 +81,6 @@ const TopicPage = () => {
         currentTopic: newCurrentTopic?._id
       }
     })
-
-    navigate(`/course/${courseId}`, { replace: true })
   }
 
   const renderTopic = (): React.ReactNode => {
@@ -95,7 +93,16 @@ const TopicPage = () => {
           return <Module1Topic2 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
         }
         if (topic.topicNumber === 3) {
-          return <Module1Topic3 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module1Topic3
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={() => {
+                handleFinishTopic()
+                navigate(`/course/${courseId}`, { replace: true })
+              }}
+            />
+          )
         }
         return null
 
@@ -108,7 +115,16 @@ const TopicPage = () => {
 
       case 3:
         if (topic.topicNumber === 1) {
-          return <Module3Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module3Topic1
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={() => {
+                handleFinishTopic()
+                navigate(`/course/${courseId}`, { replace: true })
+              }}
+            />
+          )
         }
 
         return null

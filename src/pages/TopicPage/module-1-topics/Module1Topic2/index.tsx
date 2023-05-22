@@ -16,9 +16,6 @@ type Props = {
 
 const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
   const TOTAL_HISTORY_EVENTS = Object.values(historyEventInformation).length
-  const MemoizedInstructions = React.memo(Instructions)
-  const MemoizedCustomARButton = React.memo(CustomARButton)
-  const MemoizedInformationMessage = React.memo(InformationMessage)
   const [information, setInformation] = useState('')
   const [tappedYears, setTappedYears] = useState<number[]>([])
   const [currentTappedYear, setCurrentTappedYear] = useState(0)
@@ -43,14 +40,9 @@ const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
 
   return (
     <div className='module-1-topic-2'>
-      <MemoizedInstructions hasEnterAr={hasEnterAr} />
-      <MemoizedCustomARButton isFinish={isFinish} hasEnterAr={hasEnterAr} />
-      <MemoizedInformationMessage
-        year={currentTappedYear}
-        information={information}
-        isFinish={isFinish}
-        hasEnterAr={hasEnterAr}
-      />
+      <Instructions hasEnterAr={hasEnterAr} />
+      <CustomARButton isFinish={isFinish} hasEnterAr={hasEnterAr} />
+      <InformationMessage year={currentTappedYear} information={information} hasEnterAr={hasEnterAr} />
 
       <Canvas>
         <XR onSessionStart={() => setHasEnterAr(true)} onSessionEnd={() => setHasEnterAr(false)}>
