@@ -13,9 +13,6 @@ const Instructions: React.FC<InstructionProps> = ({ hasEnterAr }) => {
         In this topic, you will learn about variables, which are essential components of programming languages used for
         storing and manipulating data.
       </div>
-      <div className='module-4-topic-1-subtitle'>
-        Note: Please ensure that your phone or camera is held upright in a portrait mode.
-      </div>
     </div>
   )
 }

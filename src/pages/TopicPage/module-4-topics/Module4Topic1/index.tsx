@@ -72,6 +72,10 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Variables',
+      details: `When it doesn't the object, try also capturing it in landscape mode.`
+    },
+    {
+      title: 'Variables',
       details:
         'Example, a container named banana. You will take a picture of a banana so that the container will be filled by a banana.'
     }
@@ -135,7 +139,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     }
 
     Object.keys(containers).some((key) => {
-      const hasMatch = predictions.some((prediction) => prediction.className.includes(key))
+      const hasMatch = predictions.some((prediction) => prediction.className.toLowerCase().includes(key))
       if (hasMatch) {
         matchResult.hasMatch = true
         matchResult.matchedKey = key
