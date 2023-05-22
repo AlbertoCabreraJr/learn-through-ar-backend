@@ -125,7 +125,7 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
             moveBanana(1)
           }}
         >
-          Dance afrohouse dance
+          Do afrohouse dance
         </button>
         <button
           className='module-1-topic-1-action-button'
@@ -134,7 +134,7 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
             moveBanana(2)
           }}
         >
-          Dance boogie dance
+          Do boogie dance
         </button>
       </div>
     )
