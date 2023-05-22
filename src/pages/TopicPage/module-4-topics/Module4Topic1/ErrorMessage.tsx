@@ -15,6 +15,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ hasEnterAr, showContent, on
     <div className='error-message'>
       <div className='title'>Oops!</div>
       <div className='sub-title'>That object do not have it's own variable.</div>
+      <div className='sub-title'>You can go to Google and search the object.</div>
       <div
         className='close-button'
         onClick={() => {

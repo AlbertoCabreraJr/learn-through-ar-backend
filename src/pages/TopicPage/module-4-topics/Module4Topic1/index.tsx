@@ -68,6 +68,10 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Variables',
+      details: 'When capturing the picture, ensure sufficient lighting to achieve brightness and clarity.'
+    },
+    {
+      title: 'Variables',
       details:
         'Example, a container named banana. You will take a picture of a banana so that the container will be filled by a banana.'
     }
