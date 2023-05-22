@@ -41,4 +41,13 @@
       color: #{colors.$text-light};
     }
   }
+
+  .supported-devices-link {
+    position: absolute;
+    bottom: 40px;
+    color: colors.$primary;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
 }
