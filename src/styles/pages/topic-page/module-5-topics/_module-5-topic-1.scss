@@ -160,6 +160,32 @@
     }
   }
 
+  .result-message {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    right: 20px;
+    z-index: 999;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: colors.$background-color;
+    border-radius: 20px;
+
+    .close-button {
+      background-color: #00a6fb;
+      margin-top: 40px;
+      border-radius: 10px;
+      border: 0;
+      color: #f3fcec;
+      max-width: 100%;
+      padding: 10px 30px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: rgba(0, 167, 251, 0.3) 0px 1px 2px 0px, rgba(0, 167, 251, 0.15) 0px 1px 3px 1px;
+    }
+  }
+
   .information {
     background-color: colors.$secondary;
     padding: 20px;

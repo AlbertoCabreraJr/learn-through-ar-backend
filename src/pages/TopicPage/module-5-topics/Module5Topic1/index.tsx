@@ -16,6 +16,7 @@ import * as handpose from '@tensorflow-models/handpose'
 import CustomCamera from './CustomCamera'
 import InsideARHelpIcon from './InsideARHelpIcon'
 import InsideARHelpContent from './InsideARHelpContent'
+import ResultMessage from './ResultMessage'
 const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
 const { GestureDescription, Finger, FingerCurl, GestureEstimator } = fp
@@ -141,6 +142,7 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   const [isFinish, setIsFinish] = useState(false)
   const WINNER_SCORE = 3
   const [showInsideARHelp, setShowInsideARHelp] = useState(false)
+  const [showResultMessage, setShowResultMessage] = useState(false)
 
   const determineWinner = (userGesture: string | null, computerGesture: string | null): string => {
     if (userGesture === computerGesture) {
@@ -208,7 +210,7 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       setCurrentUserGesture(newUserGesture)
       setResult(winner)
       updateScore(winner)
-    }, 100)
+    }, 500)
 
     return () => clearInterval(interval)
   }, [videoRef.current, cameraLoaded, handposeModel, currentUserGesture, remainingTime])
@@ -239,15 +241,21 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   }, [videoRef.current, cameraLoaded, handposeModel])
 
   useEffect(() => {
-    if (remainingTime === 0) {
-      setTimeout(() => {
-        setShowHands(false)
-        setRemainingTime(duration)
-        setCurrentUserGesture(null)
-        setResult('')
-      }, 7000)
+    if (remainingTime === 0 && result) {
+      setShowResultMessage(true)
     }
-  }, [remainingTime])
+  }, [remainingTime, result])
+
+  // useEffect(() => {
+  //   if (remainingTime === 0) {
+  //     setTimeout(() => {
+  //       setShowHands(false)
+  //       setRemainingTime(duration)
+  //       setCurrentUserGesture(null)
+  //       setResult('')
+  //     }, 7000)
+  //   }
+  // }, [remainingTime])
 
   useEffect(() => {
     if (userScore === WINNER_SCORE) {
@@ -260,6 +268,20 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   return (
     <div className='module-5-topic-1'>
       <Instructions hasEnterAr={hasEnterAr} />
+      <ResultMessage
+        hasEnterAr={hasEnterAr}
+        showContent={showResultMessage}
+        onClose={() => {
+          setShowResultMessage(false)
+          setShowHands(false)
+          setRemainingTime(duration)
+          setCurrentUserGesture(null)
+          setResult('')
+        }}
+        computerGesture={currentComputerGesture}
+        userGesture={currentUserGesture}
+        winner={result}
+      />
       <CustomARButton
         isFinish={isFinish}
         hasEnterAr={hasEnterAr}
