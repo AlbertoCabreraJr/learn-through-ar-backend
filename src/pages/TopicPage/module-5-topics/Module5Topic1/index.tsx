@@ -14,6 +14,8 @@ import CustomARButton from './CustomARButton'
 import * as fp from 'fingerpose'
 import * as handpose from '@tensorflow-models/handpose'
 import CustomCamera from './CustomCamera'
+import InsideARHelpIcon from './InsideARHelpIcon'
+import InsideARHelpContent from './InsideARHelpContent'
 const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
 const { GestureDescription, Finger, FingerCurl, GestureEstimator } = fp
@@ -102,7 +104,7 @@ const instructions = [
   },
   {
     title: 'if/then condition',
-    details: 'You need to score 5 to finished this activity!'
+    details: 'You need to score 3 to finished this activity!'
   },
   {
     title: 'if/then condition',
@@ -130,14 +132,15 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   const [userScore, setUserScore] = useState(0)
   const [computerScore, setComputerScore] = useState(0)
   const [remainingTime, setRemainingTime] = useState(userScore === 0 && computerScore === 0 ? 10 : duration)
-  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(0)
+  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(1)
   const [closeInitialInstructions, setCloseInitialInstructions] = useState(false)
   const progress = (100 / instructions.length) * currentInstructionIndex
-  const [startedInstructions, setStartedInstructions] = useState(false)
+  const [startedInstructions, setStartedInstructions] = useState(true)
   const navigate = useNavigate()
   const [playSoundSuccess] = useSound(soundSuccess)
   const [isFinish, setIsFinish] = useState(false)
-  const WINNER_SCORE = 5
+  const WINNER_SCORE = 3
+  const [showInsideARHelp, setShowInsideARHelp] = useState(false)
 
   const determineWinner = (userGesture: string | null, computerGesture: string | null): string => {
     if (userGesture === computerGesture) {
@@ -289,6 +292,12 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
         }}
       />
       <SuccessMessage hasEnterAr={hasEnterAr} showContent={isFinish} />
+      <InsideARHelpIcon
+        hasEnterAr={hasEnterAr}
+        setShowContent={setShowInsideARHelp}
+        showIcon={closeInitialInstructions}
+      />
+      <InsideARHelpContent hasEnterAr={hasEnterAr} showContent={showInsideARHelp} />
       <CustomCamera
         hasEnterAr={hasEnterAr}
         showContent={closeInitialInstructions}

@@ -10,6 +10,9 @@ import Boxes from './Boxes'
 import SuccessMessage from './SuccessMessage'
 import useSound from 'use-sound'
 import * as THREE from 'three'
+import InsideARHelpIcon from './InsideARHelpIcon'
+import InsideARHelpContent from './InsideARHelpContent'
+import ErrorMessage from './ErrorMessage'
 
 const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
@@ -21,7 +24,7 @@ type Props = {
 
 const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
   const [playSound] = useSound(soundSuccess)
-  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(0)
+  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(1)
   const instructions = [
     {
       title: 'START',
@@ -69,15 +72,15 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       type. There are 5 of them.
     </div>,
     <div>
-      Second, you need to find all the boxes that represent the <span style={{ fontWeight: '700' }}>INTEGER</span> data
+      Next, you need to find all the boxes that represent the <span style={{ fontWeight: '700' }}>INTEGER</span> data
       type. There are 5 of them.
     </div>,
     <div>
-      Third, you need to find all the boxes that represent the <span style={{ fontWeight: '700' }}>FLOAT</span> data
+      Next, you need to find all the boxes that represent the <span style={{ fontWeight: '700' }}>FLOAT</span> data
       type. There are 5 of them.
     </div>,
     <div>
-      Fourth, you need to find all the boxes that represent the <span style={{ fontWeight: '700' }}>BOOLEAN</span> data
+      Lastly, you need to find all the boxes that represent the <span style={{ fontWeight: '700' }}>BOOLEAN</span> data
       type. There are 2 of them.
     </div>
   ]
@@ -252,7 +255,7 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     integer: 'float',
     float: 'boolean'
   }
-  const [started, setStarted] = useState(false)
+  const [started, setStarted] = useState(true)
   const [closeInitialInstructions, setCloseInitialInstructions] = useState(false)
   const progress = (100 / instructions.length) * currentInstructionIndex
   const [currentFindInstructionIndex, setCurrentFindInstructionIndex] = useState(0)
@@ -263,6 +266,8 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     float: 5,
     string: 5
   }
+  const [showInsideARHelp, setShowInsideARHelp] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   const handleFindInstructionButtonClick = () => {
     setCurrentlyFinding(true)
@@ -310,8 +315,8 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
         started={started}
         close={closeInitialInstructions}
         onStart={() => {
-          setStarted(true)
-          setCurrentInstructionIndex(currentInstructionIndex + 1)
+          // setStarted(true)
+          // setCurrentInstructionIndex(currentInstructionIndex + 1)
         }}
         onBack={() => {
           setCurrentInstructionIndex(currentInstructionIndex - 1)
@@ -323,6 +328,12 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
           setCloseInitialInstructions(true)
         }}
       />
+      <InsideARHelpIcon
+        hasEnterAr={hasEnterAr}
+        setShowContent={setShowInsideARHelp}
+        showIcon={closeInitialInstructions}
+      />
+      <InsideARHelpContent hasEnterAr={hasEnterAr} showContent={showInsideARHelp} />
 
       {/* We will show these instructions if the first set of instruction was closed. */}
       <FindInstructions
@@ -342,13 +353,20 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       />
 
       <SuccessMessage hasEnterAr={hasEnterAr} showContent={isFinishedExercise()} />
+      <ErrorMessage hasEnterAr={hasEnterAr} showContent={showError} onClose={() => setShowError(false)} />
 
       <Canvas>
-        <XR onSessionStart={() => setHasEnterAr(true)} onSessionEnd={() => setHasEnterAr(false)}>
+        <XR
+          onSessionStart={() => {
+            setHasEnterAr(true)
+          }}
+          onSessionEnd={() => setHasEnterAr(false)}
+        >
           <ambientLight intensity={0.5} />
           <pointLight position={[5, 5, 5]} />
           <Controllers />
           <Boxes
+            onShowError={() => setShowError(true)}
             boxes={boxes}
             currentDataType={currentDataType}
             hasEnterAr={hasEnterAr}

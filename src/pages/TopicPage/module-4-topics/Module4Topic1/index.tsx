@@ -13,6 +13,8 @@ import * as mobilenet from '@tensorflow-models/mobilenet'
 import Loader from '../../../../components/Loader'
 import ErrorMessage from './ErrorMessage'
 import { useNavigate } from 'react-router-dom'
+import InsideARHelpIcon from './InsideARHelpIcon'
+import InsideARHelpContent from './InsideARHelpContent'
 
 const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
@@ -47,7 +49,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Variables',
-      details: 'In this exercise, you will be presented by 4 CONTAINERS.'
+      details: 'In this exercise, you will be presented by 3 CONTAINERS.'
     },
     {
       title: 'Variables',
@@ -82,12 +84,12 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   ]
 
   const [containers, setContainers] = useState({
-    pen: {
-      title: 'Pen',
+    book: {
+      title: 'Book',
       filled: false
     },
-    keyboard: {
-      title: 'Keyboard',
+    chair: {
+      title: 'Chair',
       filled: false
     },
     screen: {
@@ -97,15 +99,16 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   })
   const navigate = useNavigate()
   const [playSound] = useSound(soundSuccess)
-  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(0)
+  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(1)
   const [closeInitialInstructions, setCloseInitialInstructions] = useState(false)
   const progress = (100 / instructions.length) * currentInstructionIndex
-  const [started, setStarted] = useState(false)
+  const [started, setStarted] = useState(true)
   const [image, setImage] = useState()
   const [takeScreenshot, setTakeScreenshot] = useState(false)
   const [imageUrl, setImageUrl] = useState()
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
+  const [showInsideARHelp, setShowInsideARHelp] = useState(false)
 
   const handleUpdateContainer = (args: { containerKey: string; filled: boolean }) => {
     const { containerKey, filled } = args
@@ -215,6 +218,12 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
           setCloseInitialInstructions(true)
         }}
       />
+      <InsideARHelpIcon
+        hasEnterAr={hasEnterAr}
+        setShowContent={setShowInsideARHelp}
+        showIcon={closeInitialInstructions}
+      />
+      <InsideARHelpContent hasEnterAr={hasEnterAr} showContent={showInsideARHelp} />
 
       <SuccessMessage hasEnterAr={hasEnterAr} showContent={isFinished()} />
       <ErrorMessage

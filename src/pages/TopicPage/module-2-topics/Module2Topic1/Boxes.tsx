@@ -14,15 +14,24 @@ type BoxesProps = {
   currentDataType: 'boolean' | 'integer' | 'float' | 'string'
   showContent: boolean
   boxes: any[]
+  onShowError: () => void
 }
 
 type BoxProps = {
   box: any
   onClick: (dataType: 'boolean' | 'integer' | 'float' | 'string') => void
   currentDataType: 'boolean' | 'integer' | 'float' | 'string'
+  onShowError: () => void
 }
 
-const Boxes: React.FC<BoxesProps> = ({ currentDataType, hasEnterAr, onUpdateScore, showContent, boxes }) => {
+const Boxes: React.FC<BoxesProps> = ({
+  currentDataType,
+  hasEnterAr,
+  onUpdateScore,
+  showContent,
+  boxes,
+  onShowError
+}) => {
   if (!hasEnterAr || !showContent) {
     return null
   }
@@ -30,13 +39,13 @@ const Boxes: React.FC<BoxesProps> = ({ currentDataType, hasEnterAr, onUpdateScor
   return (
     <>
       {boxes.map((box) => (
-        <Box box={box} currentDataType={currentDataType} onClick={onUpdateScore} />
+        <Box box={box} currentDataType={currentDataType} onClick={onUpdateScore} onShowError={onShowError} />
       ))}
     </>
   )
 }
 
-const Box: React.FC<BoxProps> = ({ onClick, currentDataType, box }) => {
+const Box: React.FC<BoxProps> = ({ onClick, currentDataType, box, onShowError }) => {
   const [color, setColor] = useState('#00a6fb')
   const [playSoundSuccess] = useSound(soundSuccess)
   const [playSoundError] = useSound(soundError)
@@ -47,6 +56,7 @@ const Box: React.FC<BoxProps> = ({ onClick, currentDataType, box }) => {
 
   const handleClick = () => {
     if (box.dataType !== currentDataType) {
+      onShowError()
       setColor('#ff3535')
 
       setTimeout(() => {

@@ -23,8 +23,8 @@ const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     <div className='module-3-topic-1'>
       <div className='module-3-topic-1-title'>Arithmetic Operations</div>
       <div className='module-3-topic-1-subtitle'>
-        This module will not have any AR activity, as it's brief and easy to understand. Instead, please take a moment
-        to read the text below to know about the arithmetic operations. It's just a 2-3 minutes read.
+        No AR activity is included in this module. Instead, take a moment to read the following text, which provides a
+        brief overview of arithmetic operations. It will only take 2-3 minutes of your time.
       </div>
       <div className='module-3-topic-1-content'>
         <div>

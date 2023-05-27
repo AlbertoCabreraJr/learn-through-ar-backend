@@ -9,6 +9,8 @@ import Model from './Model'
 import { Canvas } from '@react-three/fiber'
 import { Controllers, XR } from '@react-three/xr'
 import loadGLTF from '../../../../utils/loadGLTF'
+import InsideARHelpIcon from './InsideARHelpIcon'
+import InsideARHelpContent from './InsideARHelpContent'
 
 const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
@@ -73,12 +75,13 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
 
   const navigate = useNavigate()
   const [playSound] = useSound(soundSuccess)
-  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(0)
+  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(1)
   const [closeInitialInstructions, setCloseInitialInstructions] = useState(false)
   const progress = (100 / instructions.length) * currentInstructionIndex
-  const [started, setStarted] = useState(false)
+  const [started, setStarted] = useState(true)
   const [isFinished, setIsFinished] = useState(false)
   const [currentCommand, setCurrentCommand] = useState(null)
+  const [showInsideARHelp, setShowInsideARHelp] = useState(false)
 
   const areCommandStatusAllTrue = (commandsStatus: any): boolean => {
     return Object.keys(commandsStatus).every((key) => commandsStatus[key as keyof typeof commandsStatus] === true)
@@ -155,6 +158,12 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
           setCloseInitialInstructions(true)
         }}
       />
+      <InsideARHelpIcon
+        hasEnterAr={hasEnterAr}
+        setShowContent={setShowInsideARHelp}
+        showIcon={closeInitialInstructions}
+      />
+      <InsideARHelpContent hasEnterAr={hasEnterAr} showContent={showInsideARHelp} />
 
       <SuccessMessage hasEnterAr={hasEnterAr} showContent={isFinished} />
 

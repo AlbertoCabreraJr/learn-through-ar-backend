@@ -14,7 +14,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ hasEnterAr, showContent, on
   return (
     <div className='error-message'>
       <div className='title'>Oops!</div>
-      <div className='sub-title'>Can't detect object accurately.</div>
+      <div className='sub-title'>You are incorrect.</div>
       <div
         className='close-button'
         onClick={() => {

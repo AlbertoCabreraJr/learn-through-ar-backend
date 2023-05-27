@@ -7,6 +7,8 @@ import * as THREE from 'three'
 import HistoryEvent from './HistoryEvent'
 import historyEventInformation from './historyEventInformation'
 import InformationMessage from './InformationMessage'
+import InsideARHelpIcon from './InsideARHelpIcon'
+import InsideARHelpContent from './InsideARHelpContent'
 
 type Props = {
   onFinish: () => void
@@ -20,6 +22,8 @@ const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   const [tappedYears, setTappedYears] = useState<number[]>([])
   const [currentTappedYear, setCurrentTappedYear] = useState(0)
   const [isFinish, setIsFinish] = useState(false)
+  const [showInsideARHelp, setShowInsideARHelp] = useState(false)
+  const MemoizedInformationMessage = React.memo(InformationMessage)
 
   const handleTap = (year: number) => {
     setInformation(historyEventInformation[year])
@@ -42,7 +46,9 @@ const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     <div className='module-1-topic-2'>
       <Instructions hasEnterAr={hasEnterAr} />
       <CustomARButton isFinish={isFinish} hasEnterAr={hasEnterAr} />
-      <InformationMessage year={currentTappedYear} information={information} hasEnterAr={hasEnterAr} />
+      <MemoizedInformationMessage year={currentTappedYear} information={information} hasEnterAr={hasEnterAr} />
+      <InsideARHelpIcon hasEnterAr={hasEnterAr} setShowContent={setShowInsideARHelp} />
+      <InsideARHelpContent hasEnterAr={hasEnterAr} showContent={showInsideARHelp} />
 
       <Canvas>
         <XR onSessionStart={() => setHasEnterAr(true)} onSessionEnd={() => setHasEnterAr(false)}>
