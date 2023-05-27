@@ -26,7 +26,7 @@ const ResultMessage: React.FC<ResultMessageProps> = ({
       <span>
         <span style={{ fontWeight: 'bold' }}>IF</span>{' '}
         <span>
-          you = {userGesture} and computer = {computerGesture}
+          your hand is {userGesture} and computer's hand is {computerGesture}
         </span>
       </span>
       <span>
