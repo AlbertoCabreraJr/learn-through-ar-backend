@@ -29,7 +29,7 @@ const ResultMessage: React.FC<ResultMessageProps> = ({
           your hand is {userGesture} and computer's hand is {computerGesture}
         </span>
       </span>
-      <span>
+      <span style={{ marginTop: 10 }}>
         <span style={{ fontWeight: 'bold' }}>THEN</span>{' '}
         <span>{winner === 'draw' ? 'it is a DRAW' : winner === 'user' ? 'YOU win' : 'COMPUTER wins'}</span>
       </span>
@@ -39,7 +39,7 @@ const ResultMessage: React.FC<ResultMessageProps> = ({
           onClose()
         }}
       >
-        CLOSE
+        OKAY
       </div>
     </div>
   )
