@@ -210,7 +210,7 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       setCurrentUserGesture(newUserGesture)
       setResult(winner)
       updateScore(winner)
-    }, 500)
+    }, 1000)
 
     return () => clearInterval(interval)
   }, [videoRef.current, cameraLoaded, handposeModel, currentUserGesture, remainingTime])
