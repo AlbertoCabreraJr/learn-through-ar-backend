@@ -16,9 +16,9 @@ import ProfilePage from './pages/ProfilePage'
 const App = () => {
   const { isDesktop } = useIsDesktop()
 
-  // if (isDesktop) {
-  //   return <SwitchToMobileMessage />
-  // }
+  if (isDesktop) {
+    return <SwitchToMobileMessage />
+  }
 
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}>
