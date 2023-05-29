@@ -62,7 +62,11 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     {
       title: 'Exercise',
       details:
-        "When you're in the AR environment, you'll see boxes that represent different data types. To select a box that represents a particular data type, simply DOUBLE-TAP on it."
+        'When you are in the AR environment, you will see boxes that represent different data types. To select a box that represents a particular data type, simply DOUBLE-TAP on it.'
+    },
+    {
+      title: 'Exercise',
+      details: 'To select a box that represents a particular data type, simply DOUBLE-TAP on it.'
     }
   ]
 
