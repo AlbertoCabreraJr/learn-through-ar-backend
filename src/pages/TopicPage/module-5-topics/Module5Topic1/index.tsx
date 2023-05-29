@@ -80,44 +80,44 @@ const instructions = [
     details: ''
   },
   {
-    title: 'if/then condition',
-    details: `An "if/then" condition is a logical statement that helps a computer or program make decisions based on certain conditions.`
+    title: 'IF/THEN condition',
+    details: `An "IF/THEN" condition is a logical statement that helps a computer or program make decisions based on certain conditions.`
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details:
       'It follows a simple structure: if a specific condition is true, then a particular action or set of actions will be taken. Otherwise, skip the action.'
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details: 'In this activity, we will play the classic game of "rock, paper, scissors".'
   },
   {
-    title: 'if/then condition',
-    details: `"rock, paper, scissors" is built upon the concept of if/then condition.`
+    title: 'IF/THEN condition',
+    details: `"rock, paper, scissors" is built upon the concept of IF/THEN condition.`
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details: 'IF user1 show a rock and user2 show a scissor, THEN user1 wins. So on and so forth.'
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details: 'For this game, your opponent will be a computer.'
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details: 'You need to score 3 to finished this activity!'
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details: 'You just need to place your hand in front of the camera.'
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details: 'Just show your hand either in a rock or scissor or paper position in front of the camera.'
   },
   {
-    title: 'if/then condition',
+    title: 'IF/THEN condition',
     details: 'Make sure to properly show your hand.'
   }
 ]
