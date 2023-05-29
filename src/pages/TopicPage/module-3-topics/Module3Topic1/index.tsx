@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Loader from '../../../../components/Loader'
 
 type Props = {
@@ -16,12 +16,16 @@ const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     onExit()
   }
 
+  useEffect(() => {
+    onFinish()
+  }, [])
+
   if (loading) {
     return <Loader />
   }
 
   return (
-    <div className='module-3-topic-1' onClick={onFinish}>
+    <div className='module-3-topic-1'>
       <div className='module-3-topic-1-title'>Arithmetic Operations</div>
       <div className='module-3-topic-1-subtitle'>
         No AR activity is included in this module. Instead, take a moment to read the following text, which provides a
