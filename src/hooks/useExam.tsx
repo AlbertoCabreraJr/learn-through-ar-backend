@@ -17,7 +17,7 @@ const useExam = (examId: string) => {
       setExam(data)
     } catch (error) {
       console.error(error)
-      navigate('/error')
+      navigate('/sign-in')
     } finally {
       setIsLoading(false)
     }
@@ -36,7 +36,7 @@ const useExam = (examId: string) => {
       })
     } catch (error) {
       console.error(error)
-      navigate('/error')
+      navigate('/sign-in')
     } finally {
       setIsLoading(false)
     }

@@ -12,7 +12,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (!isLoading && !courseId && !course) {
-      navigate('/error', { replace: true })
+      navigate('/sign-in', { replace: true })
     }
   }, [isLoading, courseId, course, navigate])
 
