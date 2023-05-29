@@ -12,6 +12,14 @@ type ScoreProps = {
   results: any[]
 }
 
+const message = {
+  1: 'Nice try!',
+  2: 'Good start!',
+  3: 'Well done!',
+  4: 'Impressive!',
+  5: 'Amazing!'
+}
+
 const Score: React.FC<ScoreProps> = ({ score, onClose, totalScore, results }) => {
   return (
     <div className='exam-score'>
@@ -19,7 +27,8 @@ const Score: React.FC<ScoreProps> = ({ score, onClose, totalScore, results }) =>
         <img className='icon' src={close} alt='Close icon' />
       </div>
       <div className='contents'>
-        <img className='logo' src={logo} alt='Learn through AR logo' />
+        {/* @ts-ignore */}
+        <div className='message'>{message[score]}</div>
         <div className='final-total-scores'>
           {score} / {totalScore}
         </div>
