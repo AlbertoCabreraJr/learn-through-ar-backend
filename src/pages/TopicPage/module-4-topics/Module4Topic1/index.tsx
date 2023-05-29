@@ -66,7 +66,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     {
       title: 'Variables',
       details:
-        'To fill these containers, you will take a picture/photo of an object based on the names of the containers.'
+        'To fill these container s, you will take a picture/photo of an object based on the names of the containers.'
     },
     {
       title: 'Variables',
@@ -88,8 +88,8 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       title: 'Book',
       filled: false
     },
-    chair: {
-      title: 'Chair',
+    pen: {
+      title: 'Pen',
       filled: false
     },
     screen: {
