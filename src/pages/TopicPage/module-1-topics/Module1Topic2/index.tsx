@@ -12,11 +12,12 @@ import InsideARHelpContent from './InsideARHelpContent'
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
+const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const TOTAL_HISTORY_EVENTS = Object.values(historyEventInformation).length
   const [information, setInformation] = useState('')
   const [tappedYears, setTappedYears] = useState<number[]>([])
@@ -36,8 +37,11 @@ const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     const newTappedYears = [...tappedYears, year]
     setTappedYears(newTappedYears)
 
-    if (newTappedYears.length === TOTAL_HISTORY_EVENTS) {
+    if (newTappedYears.length === 5) {
       onFinish()
+    }
+
+    if (newTappedYears.length === TOTAL_HISTORY_EVENTS) {
       setIsFinish(true)
     }
   }
@@ -51,7 +55,13 @@ const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       <InsideARHelpContent hasEnterAr={hasEnterAr} showContent={showInsideARHelp} />
 
       <Canvas>
-        <XR onSessionStart={() => setHasEnterAr(true)} onSessionEnd={() => setHasEnterAr(false)}>
+        <XR
+          onSessionStart={() => setHasEnterAr(true)}
+          onSessionEnd={() => {
+            setHasEnterAr(false)
+            onExit()
+          }}
+        >
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           {hasEnterAr && (

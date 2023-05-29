@@ -101,7 +101,14 @@ const TopicPage = () => {
           )
         }
         if (topic.topicNumber === 2) {
-          return <Module1Topic2 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module1Topic2
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
+            />
+          )
         }
         if (topic.topicNumber === 3) {
           return (
