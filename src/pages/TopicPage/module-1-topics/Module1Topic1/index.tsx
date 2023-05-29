@@ -95,10 +95,14 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr, o
   }
 
   useEffect(() => {
+    const initialAreAllActionButtonsClicked = Object.values(areActionButtonsClick).some((value) => value === true)
+    if (initialAreAllActionButtonsClicked) {
+      onFinish()
+    }
+
     const areAllActionButtonsClicked = Object.values(areActionButtonsClick).every((value) => value === true)
 
     if (areAllActionButtonsClicked) {
-      onFinish()
       setShowSuccessMessage(true)
     }
   }, [areActionButtonsClick.button1, areActionButtonsClick.button2, areActionButtonsClick.button3])
