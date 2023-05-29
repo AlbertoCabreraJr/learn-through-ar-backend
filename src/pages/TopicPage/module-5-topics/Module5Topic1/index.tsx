@@ -133,7 +133,7 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
   const [showHands, setShowHands] = useState(false)
   const [userScore, setUserScore] = useState(0)
   const [computerScore, setComputerScore] = useState(0)
-  const [remainingTime, setRemainingTime] = useState(userScore === 0 && computerScore === 0 ? 10 : duration)
+  const [remainingTime, setRemainingTime] = useState(userScore === 0 && computerScore === 0 ? 5 : duration)
   const [currentInstructionIndex, setCurrentInstructionIndex] = useState(1)
   const [closeInitialInstructions, setCloseInitialInstructions] = useState(false)
   const progress = (100 / instructions.length) * currentInstructionIndex
