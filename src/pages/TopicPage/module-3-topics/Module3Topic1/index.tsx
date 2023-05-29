@@ -42,7 +42,7 @@ const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
         </div>
         <div>
           Besides the basic arithmetic operations described above, programming introduces a unique operation called
-          modulo. This operation, symbolized by the "%" sign, is utilized to compute the remainder resulting from a
+          modulo. This operation, symbolized by the "%" sign, is utilized to calculate the remainder resulting from a
           division operation.
         </div>
         <div>

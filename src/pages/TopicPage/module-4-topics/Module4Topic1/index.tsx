@@ -66,7 +66,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     {
       title: 'Variables',
       details:
-        'To fill these containers, you will take a picture/photo of an object base on the names of the containers.'
+        'To fill these containers, you will take a picture/photo of an object based on the names of the containers.'
     },
     {
       title: 'Variables',
@@ -74,7 +74,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Variables',
-      details: `When it doesn't the object, try also capturing it in landscape mode.`
+      details: `When it does not detect the object, try also capturing it in landscape mode.`
     },
     {
       title: 'Variables',
