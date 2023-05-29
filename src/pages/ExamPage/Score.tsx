@@ -37,7 +37,7 @@ const Score: React.FC<ScoreProps> = ({ score, onClose, totalScore, results }) =>
       <div className='results'>
         <div className='headers'>
           <div className='headers-text'>Question</div>
-          <div className='headers-text choice-text'>Choice</div>
+          <div className='headers-text choice-text'>Your Answer</div>
           <div className='headers-text result-text'>Result</div>
         </div>
 
