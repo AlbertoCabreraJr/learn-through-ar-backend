@@ -55,7 +55,7 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     },
     {
       title: 'Loops',
-      details: 'Also, the train will always be stopped until you set a condition to move it.'
+      details: 'Also, the train will always stopped until you set a condition to move it.'
     },
     {
       title: 'Loops',

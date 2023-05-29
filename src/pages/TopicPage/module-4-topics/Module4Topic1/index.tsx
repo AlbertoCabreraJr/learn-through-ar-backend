@@ -132,8 +132,6 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
 
     setLoading(false)
 
-    const classnames = predictions.map((prediction) => prediction.className)
-
     interface MatchResult {
       hasMatch: boolean
       matchedKey?: string
@@ -153,7 +151,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
       return false
     })
 
-    if (matchResult.hasMatch) {
+    if (matchResult.hasMatch && !containers[matchResult.matchedKey as keyof typeof containers].filled) {
       playSound()
       handleUpdateContainer({ containerKey: matchResult.matchedKey!, filled: true })
     } else {
