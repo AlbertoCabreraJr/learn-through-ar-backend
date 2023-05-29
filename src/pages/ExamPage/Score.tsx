@@ -44,7 +44,6 @@ const Score: React.FC<ScoreProps> = ({ score, onClose, totalScore, results }) =>
         <div className='line' />
         <div className='details'>
           {results.map((result, index) => {
-            console.log(result.finalChoice)
             return (
               <div className='detail' key={index}>
                 <div className='title'>{result.question.text}</div>

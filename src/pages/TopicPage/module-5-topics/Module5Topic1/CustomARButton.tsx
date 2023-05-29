@@ -8,7 +8,6 @@ type CustomARButtonProps = {
 }
 
 const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr, onStart, onExit }) => {
-  console.log('isFinish', isFinish)
   if (isFinish) {
     return (
       <div
