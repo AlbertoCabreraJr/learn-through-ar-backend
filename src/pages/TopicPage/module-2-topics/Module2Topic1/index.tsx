@@ -36,7 +36,7 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Data Types',
-      details: 'There are 4 most used data type.'
+      details: 'There are 4 most used data types.'
     },
     {
       title: `1. String Data Type`,
