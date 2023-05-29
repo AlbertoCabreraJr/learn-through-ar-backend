@@ -124,7 +124,14 @@ const TopicPage = () => {
 
       case 2:
         if (topic.topicNumber === 1) {
-          return <Module2Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module2Topic1
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
+            />
+          )
         }
 
         return null
