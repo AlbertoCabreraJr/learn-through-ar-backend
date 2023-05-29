@@ -28,24 +28,29 @@ const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       </div>
       <div className='module-3-topic-1-content'>
         <div>
-          Think of arithmetic operations as basic math operations you learned in school like addition, subtraction,
-          multiplication, and division. In programming, we use these operations to perform calculations and make
-          decisions based on the results of these calculations.
+          Consider arithmetic operations as the fundamental math operations you studied in school, which include
+          addition, subtraction, multiplication, and division. These operations are utilized in programming to carry out
+          computations and make decisions based on the outcomes of these computations.
         </div>
         <div>
-          For example, if you want to find out the total cost of buying three items, you would add the cost of each
-          item. In programming, we use the "+" operator to perform this addition. Similarly, if you want to find out the
-          average of three numbers, you would divide the sum of those numbers by the total number of items. In
-          programming, we use the "/" operator to perform this division.
+          For instance, if you need to calculate the combined cost of purchasing three items, you would sum up the price
+          of each item. In programming, this addition is performed using the "+" operator. Likewise, to ascertain the
+          average of three numbers, you would divide their sum by the total count of items. In this case, programming
+          employs the "/" operator for division.
         </div>
         <div>
-          It is important to understand that in programming, we not only perform simple arithmetic operations, but also
-          use them in more complex calculations and algorithms. These operations are a fundamental building block of
-          programming and are used in almost every application and software.
+          Besides the basic arithmetic operations described above, programming introduces a unique operation called
+          modulo. This operation, symbolized by the "%" sign, is utilized to compute the remainder resulting from a
+          division operation.
         </div>
         <div>
-          In conclusion, arithmetic operations in programming are used to perform basic mathematical calculations and
-          are an essential part of almost every application and software.
+          It is crucial to note that arithmetic operations in programming go beyond basic calculations to form part of
+          more intricate computations and algorithms. These operations are a crucial component of programming, and they
+          feature in nearly every software application.
+        </div>
+        <div>
+          In summary, arithmetic operations in programming are deployed for elementary mathematical computations and
+          form a critical aspect of nearly all software applications.
         </div>
       </div>
       <button onClick={handleClickDone} className='module-3-topic-1-done-button'>
