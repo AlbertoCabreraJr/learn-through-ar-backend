@@ -45,7 +45,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Variables',
-      details: "We should name a variable base on what it is holding or what it's value."
+      details: 'We should name a variable base on what it is holding or what it is value.'
     },
     {
       title: 'Variables',
@@ -53,7 +53,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Variables',
-      details: "Each container have it's corresponding names."
+      details: 'Each container have it is corresponding names.'
     },
     {
       title: 'Variables',

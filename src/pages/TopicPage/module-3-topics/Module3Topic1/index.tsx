@@ -39,7 +39,7 @@ const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
           programming, we use the "/" operator to perform this division.
         </div>
         <div>
-          It's important to understand that in programming, we not only perform simple arithmetic operations, but also
+          It is important to understand that in programming, we not only perform simple arithmetic operations, but also
           use them in more complex calculations and algorithms. These operations are a fundamental building block of
           programming and are used in almost every application and software.
         </div>

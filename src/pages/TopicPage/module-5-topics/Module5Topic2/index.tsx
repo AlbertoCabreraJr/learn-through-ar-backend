@@ -44,10 +44,9 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       title: 'Loops',
       details: 'In this activity, you will control a train whether it should stop or go.'
     },
-
     {
       title: 'Loops',
-      details: 'All you need to is to press the buttons GO and STOP.'
+      details: 'The train here is illustrated as a loop.'
     },
     {
       title: 'Loops',
@@ -59,9 +58,18 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     },
     {
       title: 'Loops',
-      details:
-        'Through this activity, you will come to understand that loops in programming operate akin to a train, consistently moving or stopping until a condition is met.'
+      details: 'All you need to is to press the buttons GO and STOP.'
     },
+    {
+      title: 'Loops',
+      details:
+        'Through this activity, you will come to understand that loops in programming operates the same as a train.'
+    },
+    {
+      title: 'Loops',
+      details: 'Like a train, a loop is consistently moving until a condition is met to stop it.'
+    },
+
     {
       title: 'Loops',
       details: 'To accomplish this activity you will just need to press the two commands.'
