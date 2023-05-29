@@ -3,16 +3,17 @@ import Loader from '../../../../components/Loader'
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
+const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const [loading, setLoading] = useState(false)
 
   const handleClickDone = async () => {
     setLoading(true)
-    onFinish()
+    onExit()
   }
 
   if (loading) {
@@ -20,11 +21,12 @@ const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   }
 
   return (
-    <div className='module-3-topic-1'>
+    <div className='module-3-topic-1' onClick={onFinish}>
       <div className='module-3-topic-1-title'>Arithmetic Operations</div>
       <div className='module-3-topic-1-subtitle'>
         No AR activity is included in this module. Instead, take a moment to read the following text, which provides a
-        brief overview of arithmetic operations. It will only take 2-3 minutes of your time.
+        brief overview of arithmetic operations. It will only take 2-3 minutes of your time. When your finish, tap DONE
+        below.
       </div>
       <div className='module-3-topic-1-content'>
         <div>

@@ -115,10 +115,8 @@ const TopicPage = () => {
             <Module1Topic3
               hasEnterAr={hasEnterAr}
               setHasEnterAr={setHasEnterAr}
-              onFinish={() => {
-                handleFinishTopic()
-                navigate(`/course/${courseId}`, { replace: true })
-              }}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
             />
           )
         }
@@ -137,10 +135,8 @@ const TopicPage = () => {
             <Module3Topic1
               hasEnterAr={hasEnterAr}
               setHasEnterAr={setHasEnterAr}
-              onFinish={() => {
-                handleFinishTopic()
-                navigate(`/course/${courseId}`, { replace: true })
-              }}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
             />
           )
         }

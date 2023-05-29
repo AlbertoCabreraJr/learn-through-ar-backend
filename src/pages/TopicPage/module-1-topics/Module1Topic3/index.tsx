@@ -1,30 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Loader from '../../../../components/Loader'
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Module1Topic3: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
+const Module1Topic3: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const [loading, setLoading] = useState(false)
 
   const handleClickDone = async () => {
     setLoading(true)
-    onFinish()
+    onExit()
   }
+
+  useEffect(() => {
+    onFinish()
+  }, [])
 
   if (loading) {
     return <Loader />
   }
 
   return (
-    <div className='module-1-topic-3'>
+    <div className='module-1-topic-3' onClick={onFinish}>
       <div className='module-1-topic-3-title'>How and Where A Program Is Written</div>
       <div className='module-1-topic-3-subtitle'>
         No AR activity is included in this module. Instead, take a moment to read the following text, which provides a
-        brief overview of how and where a program is written. It will only take 2-3 minutes of your time.
+        brief overview of how and where a program is written. It will only take 2-3 minutes of your time. When your
+        finish, tap DONE below.
       </div>
       <div className='module-1-topic-3-content'>
         <div>
