@@ -68,6 +68,7 @@ const Model = ({ animationIndex }: { animationIndex: number }) => {
 }
 
 const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr, onExit }) => {
+  const [runOnFinish, setRunOnFinish] = useState(false)
   const [animationIndex, setAnimationIndex] = useState(0)
   const [areActionButtonsClick, setAreActionButtonsClick] = useState({
     button1: false,
@@ -96,7 +97,8 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr, o
 
   useEffect(() => {
     const initialAreAllActionButtonsClicked = Object.values(areActionButtonsClick).some((value) => value === true)
-    if (initialAreAllActionButtonsClicked) {
+    if (initialAreAllActionButtonsClicked && !runOnFinish) {
+      setRunOnFinish(true)
       onFinish()
     }
 

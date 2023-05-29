@@ -22,7 +22,7 @@ const Instructions: React.FC<InstructionProps> = ({ hasEnterAr }) => {
           in the history of programming
         </div>
         <div>6. When you enter the AR environment, point your camera upwards to see the cards.</div>
-        <div>7. Tap ‘Enter AR’ below. Enjoy!</div>
+        <div>7. Tap ‘Start Activity’ below. Enjoy!</div>
       </div>
     </div>
   )

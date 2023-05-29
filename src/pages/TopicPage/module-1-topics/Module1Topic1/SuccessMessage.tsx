@@ -14,7 +14,7 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ showSuccessMessage, set
         <div className='success-message-text'>
           You've just experienced programming by giving instructions to a 3D model on what to do.
         </div>
-        <div className='success-message-text'>
+        <div className='success-message-text' style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
           Essentially, programming is crafting or writing instructions for computers to complete tasks.
         </div>
         <button className='success-message-button' onClick={() => setShowSuccessMessage(false)}>

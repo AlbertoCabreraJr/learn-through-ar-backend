@@ -16,7 +16,7 @@ const Instructions: React.FC<InstructionProps> = ({ hasEnterAr }) => {
         <div>1. When you enter the AR environment, you will be presented a 3D model.</div>
         <div>2. You will see 3 buttons, each representing a different action the 3D model will do.</div>
         <div>3. Tap all 3 buttons to complete the task and pass.</div>
-        <div>4. Tap ‘Enter AR’ below. Enjoy!</div>
+        <div>4. Tap ‘Start Activity’ below. Enjoy!</div>
         <div>
           Note: Please ensure that your phone or camera is held upright if you're unable to see the models in the
           augmented reality (AR) environment.
