@@ -16,11 +16,12 @@ const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
+const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const instructions = [
     {
       title: 'START',
@@ -101,7 +102,6 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     if (areCommandStatusAllTrue(newCommandsStatus) && !isFinished) {
       playSound()
       setIsFinished(true)
-      onFinish()
     }
 
     setCommandsStatus(newCommandsStatus)
@@ -139,6 +139,8 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
     loadGLTF('https://learn-ar-xx69.s3.ap-southeast-1.amazonaws.com/assets/module-5/low_poly_train/scene.gltf')
       .then((gltf) => console.log(gltf))
       .catch((error) => console.error('Error loading GLTF model:', error))
+
+    onFinish()
   }, [])
 
   return (
@@ -178,7 +180,13 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
       {renderActionButtons()}
 
       <Canvas>
-        <XR onSessionStart={() => setHasEnterAr(true)} onSessionEnd={() => setHasEnterAr(false)}>
+        <XR
+          onSessionStart={() => setHasEnterAr(true)}
+          onSessionEnd={() => {
+            setHasEnterAr(false)
+            onExit()
+          }}
+        >
           <ambientLight intensity={0.5} />
           <pointLight position={[5, 5, 5]} />
           <Controllers />

@@ -152,17 +152,38 @@ const TopicPage = () => {
 
       case 4:
         if (topic.topicNumber === 1) {
-          return <Module4Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module4Topic1
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
+            />
+          )
         }
 
         return null
 
       case 5:
         if (topic.topicNumber === 1) {
-          return <Module5Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module5Topic1
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
+            />
+          )
         }
         if (topic.topicNumber === 2) {
-          return <Module5Topic2 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module5Topic2
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
+            />
+          )
         }
 
         return null

@@ -69,6 +69,7 @@ const generateComputerGesture = (gestures: any) => {
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -121,7 +122,7 @@ const instructions = [
   }
 ]
 
-const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
+const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [cameraLoaded, setCameraLoaded] = useState(false)
   const [handposeModel, setHandposeModel] = useState<handpose.HandPose | null>(null)
@@ -258,10 +259,13 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   // }, [remainingTime])
 
   useEffect(() => {
+    if (userScore === 1) {
+      onFinish()
+    }
+
     if (userScore === WINNER_SCORE) {
       playSoundSuccess()
       setIsFinish(true)
-      onFinish()
     }
   }, [userScore])
 
@@ -289,7 +293,7 @@ const Module5Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
           setHasEnterAr(true)
         }}
         onExit={() => {
-          navigate(-1)
+          onExit()
         }}
       />
       <InsideARInstructions

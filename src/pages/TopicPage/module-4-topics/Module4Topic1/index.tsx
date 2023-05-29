@@ -20,11 +20,12 @@ const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
+const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const instructions = [
     {
       title: 'START',
@@ -109,6 +110,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
   const [showInsideARHelp, setShowInsideARHelp] = useState(false)
+  const [runOnFinish, setRunOnFinish] = useState(false)
 
   const handleUpdateContainer = (args: { containerKey: string; filled: boolean }) => {
     const { containerKey, filled } = args
@@ -160,12 +162,15 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   }
 
   const isFinished = (): boolean => {
-    //@ts-ignore
-    const finish = Object.keys(containers).every((key) => containers[key].filled === true)
-
-    if (finish) {
+    // @ts-ignore
+    const initialFinish = Object.keys(scores).some((key) => scores[key] === perfectScores[key])
+    if (initialFinish && !runOnFinish) {
+      setRunOnFinish(true)
       onFinish()
     }
+
+    //@ts-ignore
+    const finish = Object.keys(containers).every((key) => containers[key].filled === true)
 
     return finish
   }
@@ -194,7 +199,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
           setHasEnterAr(true)
         }}
         onExit={() => {
-          navigate(-1)
+          onExit()
         }}
       />
       <InsideARInstructions
