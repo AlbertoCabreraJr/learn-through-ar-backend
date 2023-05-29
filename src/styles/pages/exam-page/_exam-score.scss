@@ -18,50 +18,78 @@
   .contents {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 80%;
 
     .logo {
-      width: 64px;
-      height: 64px;
+      width: 48px;
+      height: 48px;
     }
 
     .score-text {
       color: colors.$secondary;
-      font-size: 28px;
+      font-size: 18px;
       font-weight: 500;
-      margin: 10px 0;
     }
 
-    .final-and-total-scores {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-
-      .final-score,
-      .total-score {
-        color: colors.$secondary;
-        font-weight: 700;
-        font-size: 40px;
-      }
-
-      .out-of {
-        color: colors.$secondary;
-        font-weight: 400;
-        font-size: 24px;
-      }
-    }
-
-    .for {
-      margin-bottom: 10px;
-    }
-
-    .title {
+    .final-total-scores {
+      margin-top: 10px;
       color: colors.$secondary;
-      font-weight: 600;
-      font-size: 24px;
-      text-align: center;
+      font-weight: 700;
+      font-size: 32px;
+    }
+  }
+
+  .results {
+    padding: 20px;
+
+    .headers {
+      display: flex;
+
+      .headers-text {
+        font-weight: 700;
+        font-size: 16px;
+        margin: 20px 0;
+        flex: 1;
+      }
+
+      .result-text {
+        text-align: center;
+      }
+    }
+
+    .line {
+      border: 0.8px solid colors.$secondary;
+    }
+
+    .details {
+      margin-top: 20px;
+
+      .detail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        gap: 10px;
+
+        .title {
+          font-weight: 700;
+          font-size: 14px;
+          color: colors.$secondary;
+          flex: 1;
+        }
+
+        .choice {
+          font-weight: 500;
+          font-size: 14px;
+          color: colors.$secondary;
+          flex: 1;
+        }
+
+        .icon-result {
+          width: 32px;
+          height: 32px;
+          flex: 1;
+        }
+      }
     }
   }
 }

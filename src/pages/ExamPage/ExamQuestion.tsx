@@ -4,7 +4,7 @@ import Question from '../../types/Question'
 
 type ExamQuestionProps = {
   question: Question
-  onConfirm: (args: { finalChoice: Choice; correctChoice: Choice }) => void
+  onConfirm: (args: { finalChoice: Choice; correctChoice: Choice; question: Question }) => void
 }
 
 const ExamQuestion: React.FC<ExamQuestionProps> = ({ question, onConfirm }) => {
@@ -37,7 +37,7 @@ const ExamQuestion: React.FC<ExamQuestionProps> = ({ question, onConfirm }) => {
             return
           }
 
-          onConfirm({ finalChoice, correctChoice: question.correctChoice })
+          onConfirm({ finalChoice, correctChoice: question.correctChoice, question })
         }}
       >
         Confirm

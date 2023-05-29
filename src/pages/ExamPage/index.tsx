@@ -12,6 +12,7 @@ import ExamExitMessage from './ExamExitMessage'
 import ExamQuestion from './ExamQuestion'
 import ExamTakenMessage from './ExamTakenMessage'
 import Score from './Score'
+import Question from '../../types/Question'
 
 const ExamPage = () => {
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ const ExamPage = () => {
   const [progress, setProgress] = useState(0)
   const [showExamTakenMessage, setShowExamTakenMessage] = useState(exam?.finished)
   const [showExitMessage, setShowExitMessage] = useState(false)
+  const [results, setResults] = useState<any[]>([])
 
   useEffect(() => {
     setShowExamTakenMessage(exam?.finished)
@@ -59,13 +61,20 @@ const ExamPage = () => {
     return (100 / exam.questions.length) * progress
   }
 
-  const handleConfirm = async (args: { finalChoice: Choice; correctChoice: Choice }): Promise<void> => {
-    const { finalChoice, correctChoice } = args
+  const handleConfirm = async (args: {
+    question: Question
+    finalChoice: Choice
+    correctChoice: Choice
+  }): Promise<void> => {
+    const { finalChoice, correctChoice, question } = args
     let newScore = score
 
     if (finalChoice._id === correctChoice._id) {
       newScore += 1
       setScore(newScore)
+      setResults((prev) => [...prev, { question, isCorrect: true, finalChoice }])
+    } else {
+      setResults((prev) => [...prev, { question, isCorrect: false, finalChoice }])
     }
 
     const newProgress = progress + 1
@@ -137,6 +146,7 @@ const ExamPage = () => {
       {showExamTakenMessage && <ExamTakenMessage onClose={() => setShowExamTakenMessage(false)} />}
       {showScore && (
         <Score
+          results={results}
           examTitle={exam.title}
           totalScore={exam.questions.length}
           score={score}
