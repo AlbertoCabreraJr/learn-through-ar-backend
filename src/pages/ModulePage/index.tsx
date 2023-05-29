@@ -15,7 +15,7 @@ const ModulePage = () => {
 
   useEffect(() => {
     if (!isLoadingCourse && !isLoadingModule && !moduleId && !courseId && !course && !module) {
-      navigate('/sign-in', { replace: true })
+      navigate('/error', { replace: true })
     }
   }, [course, module, courseId, moduleId, isLoadingCourse, isLoadingModule, navigate])
 

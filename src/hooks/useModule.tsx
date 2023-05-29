@@ -16,7 +16,7 @@ const useModule = (moduleId: string) => {
       setModule(data)
     } catch (error) {
       console.error(error)
-      navigate('/sign-in', { replace: true })
+      navigate('/error', { replace: true })
     } finally {
       setIsLoading(false)
     }
@@ -39,7 +39,7 @@ const useModule = (moduleId: string) => {
       })
     } catch (error) {
       console.error(error)
-      navigate('/sign-in', { replace: true })
+      navigate('/error', { replace: true })
     }
   }
 

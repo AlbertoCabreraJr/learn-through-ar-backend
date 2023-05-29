@@ -35,7 +35,7 @@ const TopicPage = () => {
       !moduleId &&
       !topicId
     ) {
-      navigate('/sign-in', { replace: true })
+      navigate('/error', { replace: true })
     }
   }, [topic, module, course, isLoadingCourse, isLoadingModule, isLoadingTopic, courseId, moduleId, topicId, navigate])
 

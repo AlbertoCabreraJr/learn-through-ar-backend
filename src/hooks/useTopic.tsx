@@ -17,7 +17,7 @@ const useTopic = (topicId: string) => {
       setTopic(data)
     } catch (error) {
       console.error(error)
-      navigate('/sign-in')
+      navigate('/error', { replace: true })
     } finally {
       setIsLoading(false)
     }
@@ -34,7 +34,7 @@ const useTopic = (topicId: string) => {
       })
     } catch (error) {
       console.error(error)
-      navigate('/sign-in')
+      navigate('/error', { replace: true })
     }
   }
 

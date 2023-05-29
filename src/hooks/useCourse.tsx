@@ -17,7 +17,7 @@ const useCourse = (courseId: string) => {
       setCourse(data)
     } catch (error) {
       console.error(error)
-      navigate('/sign-in', { replace: true })
+      navigate('/error', { replace: true })
     } finally {
       setIsLoading(false)
     }
@@ -45,7 +45,7 @@ const useCourse = (courseId: string) => {
       })
     } catch (error) {
       console.error(error)
-      navigate('/sign-in', { replace: true })
+      navigate('/error', { replace: true })
     }
   }
 

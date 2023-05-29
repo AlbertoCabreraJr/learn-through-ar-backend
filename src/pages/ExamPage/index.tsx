@@ -41,7 +41,7 @@ const ExamPage = () => {
       !moduleId &&
       examId
     ) {
-      navigate('/sign-in', { replace: true })
+      navigate('/error', { replace: true })
     }
   }, [isLoadingCourse, isLoadingExam, isLoadingModule, course, module, exam, courseId, moduleId, examId, navigate])
 
