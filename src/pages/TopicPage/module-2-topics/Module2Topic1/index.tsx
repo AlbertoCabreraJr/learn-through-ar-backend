@@ -18,11 +18,12 @@ const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr }) => {
+const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const [playSound] = useSound(soundSuccess)
   const [currentInstructionIndex, setCurrentInstructionIndex] = useState(1)
   const instructions = [
@@ -264,6 +265,8 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
   const progress = (100 / instructions.length) * currentInstructionIndex
   const [currentFindInstructionIndex, setCurrentFindInstructionIndex] = useState(0)
   const [currentlyFinding, setCurrentlyFinding] = useState(false)
+  const [runOnFinish, setRunOnFinish] = useState(false)
+
   const perfectScores = {
     boolean: 2,
     integer: 5,
@@ -298,10 +301,17 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr })
 
   const isFinishedExercise = (): boolean => {
     // @ts-ignore
+    const initialFinish = Object.keys(scores).some((key) => scores[key] === perfectScores[key])
+    if (initialFinish && !runOnFinish) {
+      setRunOnFinish(true)
+      onFinish()
+    }
+
+    // @ts-ignore
     const finish = Object.keys(scores).every((key) => scores[key] === perfectScores[key])
 
     if (finish) {
-      onFinish()
+      onExit()
     }
 
     return finish
