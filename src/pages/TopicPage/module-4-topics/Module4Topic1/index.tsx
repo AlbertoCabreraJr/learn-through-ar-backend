@@ -161,7 +161,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
 
   const isFinished = (): boolean => {
     // @ts-ignore
-    const initialFinish = Object.keys(scores).some((key) => scores[key] === perfectScores[key])
+    const initialFinish = Object.keys(containers).some((key) => containers[key].filled === true)
     if (initialFinish && !runOnFinish) {
       setRunOnFinish(true)
       onFinish()
