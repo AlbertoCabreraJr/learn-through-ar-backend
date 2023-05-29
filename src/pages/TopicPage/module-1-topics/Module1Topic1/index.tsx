@@ -10,6 +10,7 @@ import useSound from 'use-sound'
 
 type Props = {
   onFinish: () => void
+  onExit: () => void
   hasEnterAr: boolean
   setHasEnterAr: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -66,7 +67,7 @@ const Model = ({ animationIndex }: { animationIndex: number }) => {
   return gltf ? <primitive ref={modelRef} object={gltf.scene} scale={[1.5, 1.5, 1.5]} position={position} /> : null
 }
 
-const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr }) => {
+const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr, onExit }) => {
   const [animationIndex, setAnimationIndex] = useState(0)
   const [areActionButtonsClick, setAreActionButtonsClick] = useState({
     button1: false,
@@ -146,7 +147,13 @@ const Module1Topic1: React.FC<Props> = ({ onFinish, hasEnterAr, setHasEnterAr })
       <Instructions hasEnterAr={hasEnterAr} />
       <CustomARButton isFinish={areAllActionButtonsClicked} hasEnterAr={hasEnterAr} />
       <Canvas>
-        <XR onSessionStart={() => setHasEnterAr(true)} onSessionEnd={() => setHasEnterAr(false)}>
+        <XR
+          onSessionStart={() => setHasEnterAr(true)}
+          onSessionEnd={() => {
+            setHasEnterAr(false)
+            onExit()
+          }}
+        >
           <ambientLight intensity={0.5} />
           <pointLight position={[5, 5, 5]} />
           <Controllers />

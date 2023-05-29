@@ -83,11 +83,22 @@ const TopicPage = () => {
     })
   }
 
+  const handleExit = () => {
+    navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
+  }
+
   const renderTopic = (): React.ReactNode => {
     switch (module.moduleNumber) {
       case 1:
         if (topic.topicNumber === 1) {
-          return <Module1Topic1 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />
+          return (
+            <Module1Topic1
+              hasEnterAr={hasEnterAr}
+              setHasEnterAr={setHasEnterAr}
+              onFinish={handleFinishTopic}
+              onExit={handleExit}
+            />
+          )
         }
         if (topic.topicNumber === 2) {
           return <Module1Topic2 hasEnterAr={hasEnterAr} setHasEnterAr={setHasEnterAr} onFinish={handleFinishTopic} />

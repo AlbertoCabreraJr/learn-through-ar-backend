@@ -30,7 +30,7 @@ const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr, o
           zIndex: 999
         }}
       >
-        Exit AR
+        Exit Activity
       </div>
     )
   }
@@ -59,7 +59,7 @@ const CustomARButton: React.FC<CustomARButtonProps> = ({ isFinish, hasEnterAr, o
         zIndex: 999
       }}
     >
-      Enter AR
+      Start Activity
     </div>
   )
 }
