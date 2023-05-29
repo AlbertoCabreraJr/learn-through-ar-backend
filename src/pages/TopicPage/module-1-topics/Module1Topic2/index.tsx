@@ -9,6 +9,9 @@ import historyEventInformation from './historyEventInformation'
 import InformationMessage from './InformationMessage'
 import InsideARHelpIcon from './InsideARHelpIcon'
 import InsideARHelpContent from './InsideARHelpContent'
+import useSound from 'use-sound'
+
+const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
 type Props = {
   onFinish: () => void
@@ -19,6 +22,7 @@ type Props = {
 
 const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, onExit }) => {
   const TOTAL_HISTORY_EVENTS = Object.values(historyEventInformation).length
+  const [playSoundSuccess] = useSound(soundSuccess)
   const [information, setInformation] = useState('')
   const [tappedYears, setTappedYears] = useState<number[]>([])
   const [currentTappedYear, setCurrentTappedYear] = useState(0)
@@ -27,6 +31,7 @@ const Module1Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
   const MemoizedInformationMessage = React.memo(InformationMessage)
 
   const handleTap = (year: number) => {
+    playSoundSuccess()
     setInformation(historyEventInformation[year])
     setCurrentTappedYear(year)
 
