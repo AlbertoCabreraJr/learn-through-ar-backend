@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
 import Loader from '../../components/Loader'
@@ -22,6 +22,7 @@ const TopicPage = () => {
   const { module, isLoading: isLoadingModule, updateModule } = useModule(moduleId!)
   const { course, isLoading: isLoadingCourse, updateCourse } = useCourse(courseId!)
   const [hasEnterAr, setHasEnterAr] = useState(false)
+  const startTimeRef = useRef<number>(0)
 
   useEffect(() => {
     if (
@@ -38,6 +39,18 @@ const TopicPage = () => {
       navigate('/error', { replace: true })
     }
   }, [topic, module, course, isLoadingCourse, isLoadingModule, isLoadingTopic, courseId, moduleId, topicId, navigate])
+
+  useEffect(() => {
+    // Record the start time when the component is mounted
+    startTimeRef.current = Date.now()
+
+    // Clean up the timer when the component is unmounted
+    return () => {
+      const endTime = Date.now()
+      const timeSpent = endTime - startTimeRef.current
+      console.log(`Time spent on the page: ${timeSpent} milliseconds`)
+    }
+  }, [])
 
   if (
     isLoadingTopic ||
@@ -84,6 +97,9 @@ const TopicPage = () => {
   }
 
   const handleExit = () => {
+    const endTime = Date.now()
+    updateTopic({ topicId: topicId!, body: { startTime: startTimeRef.current, endTime } })
+
     navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
   }
 

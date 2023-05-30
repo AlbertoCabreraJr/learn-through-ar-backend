@@ -27,7 +27,13 @@ const useTopic = (topicId: string) => {
     await getTopic()
   }
 
-  const updateTopic = async ({ topicId, body }: { topicId: string; body: { finished: boolean } }) => {
+  const updateTopic = async ({
+    topicId,
+    body
+  }: {
+    topicId: string
+    body: { finished?: boolean; startTime?: any; endTime?: any }
+  }) => {
     try {
       await fetcher.put(`/topics/${topicId}`, {
         ...body
