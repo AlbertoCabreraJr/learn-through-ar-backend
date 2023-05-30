@@ -14,7 +14,7 @@ const ExamTakenMessage: React.FC<ScoreProps> = ({ onClose }) => {
       </div>
       <div className='contents'>
         <img className='logo' src={logo} alt='Learn through AR logo' />
-        <div className='title'>You've already taken this exam. Your score won't be saved if you retake it.</div>
+        <div className='title'>You have already taken this exam. Your score won't be saved if you retake it.</div>
       </div>
     </div>
   )
