@@ -78,7 +78,9 @@ const TopicPage = () => {
       return
     }
 
-    await updateTopic({ topicId: topicId!, body: { finished: true } })
+    const endTime = Date.now()
+
+    await updateTopic({ topicId: topicId!, body: { finished: true, startTime: startTimeRef.current, endTime } })
     await updateModule({ moduleId: moduleId!, body: { progress: module?.progress! + 1 } })
 
     const currentFinishedTopics = course?.finishedTopics ? course.finishedTopics : []
@@ -97,9 +99,6 @@ const TopicPage = () => {
   }
 
   const handleExit = () => {
-    const endTime = Date.now()
-    updateTopic({ topicId: topicId!, body: { startTime: startTimeRef.current, endTime } })
-
     navigate(`/course/${courseId}/module/${moduleId}`, { replace: true })
   }
 
