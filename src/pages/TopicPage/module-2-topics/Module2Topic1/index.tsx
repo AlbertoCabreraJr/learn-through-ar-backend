@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { Controllers, XR } from '@react-three/xr'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomARButton from './CustomARButton'
 import Instructions from './Instructions'
 import InsideARInstructions from './InsideARInstructions'
@@ -13,6 +13,7 @@ import * as THREE from 'three'
 import InsideARHelpIcon from './InsideARHelpIcon'
 import InsideARHelpContent from './InsideARHelpContent'
 import ErrorMessage from './ErrorMessage'
+import SuccessBoxSelectMessage from './SuccessBoxSelectMessage'
 
 const soundSuccess = require('../../../../assets/sounds/sound-success.mp3')
 
@@ -62,8 +63,7 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     },
     {
       title: 'Exercise',
-      details:
-        'When you are in the AR environment, you will see boxes that represent different data types. To select a box that represents a particular data type, simply DOUBLE-TAP on it.'
+      details: 'When you are in the AR environment, you will see boxes that represent different data types.'
     },
     {
       title: 'Exercise',
@@ -266,6 +266,8 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
   const [currentFindInstructionIndex, setCurrentFindInstructionIndex] = useState(0)
   const [currentlyFinding, setCurrentlyFinding] = useState(false)
   const [runOnFinish, setRunOnFinish] = useState(false)
+  const [isFinish, setIsFinish] = useState(false)
+  const [showSuccessSelect, setShowSuccessSelect] = useState(false)
 
   const perfectScores = {
     boolean: 2,
@@ -299,7 +301,7 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     setScores({ ...scores, [currentDataType]: newScore })
   }
 
-  const isFinishedExercise = (): boolean => {
+  useEffect(() => {
     // @ts-ignore
     const initialFinish = Object.keys(scores).some((key) => scores[key] === perfectScores[key])
     if (initialFinish && !runOnFinish) {
@@ -311,16 +313,14 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     const finish = Object.keys(scores).every((key) => scores[key] === perfectScores[key])
 
     if (finish) {
-      onExit()
+      setIsFinish(true)
     }
-
-    return finish
-  }
+  }, [scores])
 
   return (
     <div className='module-2-topic-1'>
       <Instructions hasEnterAr={hasEnterAr} />
-      <CustomARButton isFinish={isFinishedExercise()} hasEnterAr={hasEnterAr} />
+      <CustomARButton isFinish={isFinish} hasEnterAr={hasEnterAr} />
       <InsideARInstructions
         progress={progress}
         hasEnterAr={hasEnterAr}
@@ -366,26 +366,35 @@ const Module2Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
         scores={scores}
       />
 
-      <SuccessMessage hasEnterAr={hasEnterAr} showContent={isFinishedExercise()} />
+      <SuccessMessage hasEnterAr={hasEnterAr} showContent={isFinish} />
       <ErrorMessage hasEnterAr={hasEnterAr} showContent={showError} onClose={() => setShowError(false)} />
+      <SuccessBoxSelectMessage
+        hasEnterAr={hasEnterAr}
+        showContent={showSuccessSelect}
+        onClose={() => setShowSuccessSelect(false)}
+      />
 
       <Canvas>
         <XR
           onSessionStart={() => {
             setHasEnterAr(true)
           }}
-          onSessionEnd={() => setHasEnterAr(false)}
+          onSessionEnd={() => {
+            setHasEnterAr(false)
+            onExit()
+          }}
         >
           <ambientLight intensity={0.5} />
           <pointLight position={[5, 5, 5]} />
           <Controllers />
           <Boxes
             onShowError={() => setShowError(true)}
+            onShowSuccess={() => setShowSuccessSelect(true)}
             boxes={boxes}
             currentDataType={currentDataType}
             hasEnterAr={hasEnterAr}
             onUpdateScore={handleUpdateScore}
-            showContent={closeInitialInstructions && !isFinishedExercise()}
+            showContent={closeInitialInstructions && !isFinish}
           />
         </XR>
       </Canvas>

@@ -15,6 +15,7 @@ type BoxesProps = {
   showContent: boolean
   boxes: any[]
   onShowError: () => void
+  onShowSuccess: () => void
 }
 
 type BoxProps = {
@@ -22,6 +23,7 @@ type BoxProps = {
   onClick: (dataType: 'boolean' | 'integer' | 'float' | 'string') => void
   currentDataType: 'boolean' | 'integer' | 'float' | 'string'
   onShowError: () => void
+  onShowSuccess: () => void
 }
 
 const Boxes: React.FC<BoxesProps> = ({
@@ -30,7 +32,8 @@ const Boxes: React.FC<BoxesProps> = ({
   onUpdateScore,
   showContent,
   boxes,
-  onShowError
+  onShowError,
+  onShowSuccess
 }) => {
   if (!hasEnterAr || !showContent) {
     return null
@@ -39,13 +42,19 @@ const Boxes: React.FC<BoxesProps> = ({
   return (
     <>
       {boxes.map((box) => (
-        <Box box={box} currentDataType={currentDataType} onClick={onUpdateScore} onShowError={onShowError} />
+        <Box
+          box={box}
+          currentDataType={currentDataType}
+          onClick={onUpdateScore}
+          onShowError={onShowError}
+          onShowSuccess={onShowSuccess}
+        />
       ))}
     </>
   )
 }
 
-const Box: React.FC<BoxProps> = ({ onClick, currentDataType, box, onShowError }) => {
+const Box: React.FC<BoxProps> = ({ onClick, currentDataType, box, onShowError, onShowSuccess }) => {
   const [color, setColor] = useState('#00a6fb')
   const [playSoundSuccess] = useSound(soundSuccess)
   const [playSoundError] = useSound(soundError)
@@ -67,6 +76,7 @@ const Box: React.FC<BoxProps> = ({ onClick, currentDataType, box, onShowError })
     }
 
     playSoundSuccess()
+    onShowSuccess()
     setHide(true)
     onClick(currentDataType)
   }

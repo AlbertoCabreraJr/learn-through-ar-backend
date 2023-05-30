@@ -30,9 +30,9 @@ const InsideARHelpContent = ({ hasEnterAr, showContent }: InsideARHelpContentPro
           fontWeight: 500
         }}
       >
-        <div>1. Take a picture of a book, keyboard, and computer screen.</div>
-        <div>2. Use good light for a clear, bright picture.</div>
-        <div>3. Try landscape mode if object is not detected.</div>
+        <div>1. Use good light for a clear, bright picture.</div>
+        <div>2. Try landscape mode if object is not detected.</div>
+        <div>3. Try searching for an image in Google, and take a picture of it.</div>
       </div>
     </div>
   )

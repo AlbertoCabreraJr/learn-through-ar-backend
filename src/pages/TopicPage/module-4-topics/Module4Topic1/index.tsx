@@ -42,11 +42,11 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     },
     {
       title: 'Variables',
-      details: 'A variable named book, and the value of that variable, guess what, also a book.'
+      details: 'Example, a variable named book, and the value of that variable, guess what, also a book.'
     },
     {
       title: 'Variables',
-      details: 'We should name a variable base on what it is holding or what it is value.'
+      details: 'We should name a variable base on what it is holding or what its value.'
     },
     {
       title: 'Variables',
@@ -54,7 +54,7 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     },
     {
       title: 'Variables',
-      details: 'Each container have it is corresponding names.'
+      details: 'Each container has its corresponding names.'
     },
     {
       title: 'Variables',
@@ -67,20 +67,20 @@ const Module4Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     {
       title: 'Variables',
       details:
-        'To fill these container s, you will take a picture/photo of an object based on the names of the containers.'
-    },
-    {
-      title: 'Variables',
-      details: 'When capturing the picture, ensure sufficient lighting to achieve brightness and clarity.'
-    },
-    {
-      title: 'Variables',
-      details: `When it does not detect the object, try also capturing it in landscape mode.`
+        'To fill these containers, you will take a picture/photo of an object based on the names of the containers.'
     },
     {
       title: 'Variables',
       details:
         'Example, a container named banana. You will take a picture of a banana so that the container will be filled by a banana.'
+    },
+    {
+      title: 'Variables',
+      details: 'When capturing the picture, ensure sufficient lighting to achieve clarity.'
+    },
+    {
+      title: 'Variables',
+      details: `When it does not detect the object, try also capturing it in landscape mode.`
     }
   ]
 

@@ -30,16 +30,15 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     {
       title: 'Loops ',
       details:
-        'The basic idea behind loops is to set a condition that determines whether the loop should continue or stop. '
+        'Loops are a concept in programming that allows you to repeat a certain task over and over, until a certain condition is met.'
     },
     {
       title: 'Loops',
-      details: 'As long as the condition is true, the loop will keep executing the instructions.'
+      details: 'As long as the condition is true, the loop will keep executing a certain task.'
     },
     {
       title: 'Loops',
-      details:
-        'Once the condition becomes false, the loop will terminate, and the program will move on to the next set of instructions.'
+      details: 'Once the condition becomes false, the loop will stop executing the task.'
     },
     {
       title: 'Loops',
@@ -47,11 +46,11 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     },
     {
       title: 'Loops',
-      details: 'The train here is illustrated as a loop.'
+      details: 'The loop here is illustrated as a train.'
     },
     {
       title: 'Loops',
-      details: 'The train will continually moving until you set a condition to stop it.'
+      details: 'The train will continually move until you set a condition to stop it.'
     },
     {
       title: 'Loops',
@@ -59,7 +58,7 @@ const Module5Topic2: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
     },
     {
       title: 'Loops',
-      details: 'All you need to is to press the buttons GO and STOP.'
+      details: 'All you need to do is to press the buttons GO and STOP.'
     },
     {
       title: 'Loops',
