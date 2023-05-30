@@ -42,14 +42,8 @@ const TopicPage = () => {
 
   useEffect(() => {
     // Record the start time when the component is mounted
-    startTimeRef.current = Date.now()
-
-    // Clean up the timer when the component is unmounted
-    return () => {
-      const endTime = Date.now()
-      const timeSpent = endTime - startTimeRef.current
-      console.log(`Time spent on the page: ${timeSpent} milliseconds`)
-    }
+    // @ts-ignore
+    startTimeRef.current = new Date()
   }, [])
 
   if (
@@ -78,7 +72,7 @@ const TopicPage = () => {
       return
     }
 
-    const endTime = Date.now()
+    const endTime = new Date()
 
     await updateTopic({ topicId: topicId!, body: { finished: true, startTime: startTimeRef.current, endTime } })
     await updateModule({ moduleId: moduleId!, body: { progress: module?.progress! + 1 } })
