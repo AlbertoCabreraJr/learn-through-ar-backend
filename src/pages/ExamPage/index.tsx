@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LayoutWithoutNavigation from '../../components/LayoutWithoutNavigation'
 import Loader from '../../components/Loader'
@@ -26,6 +26,7 @@ const ExamPage = () => {
   const [showExamTakenMessage, setShowExamTakenMessage] = useState(exam?.finished)
   const [showExitMessage, setShowExitMessage] = useState(false)
   const [results, setResults] = useState<any[]>([])
+  const startTimeRef = useRef<number>(0)
 
   useEffect(() => {
     setShowExamTakenMessage(exam?.finished)
@@ -44,6 +45,12 @@ const ExamPage = () => {
       navigate('/error', { replace: true })
     }
   }, [isLoadingCourse, isLoadingExam, isLoadingModule, course, module, exam, courseId, moduleId, examId, navigate])
+
+  useEffect(() => {
+    // Record the start time when the component is mounted
+    // @ts-ignore
+    startTimeRef.current = new Date()
+  }, [])
 
   if (isLoadingCourse || isLoadingExam || isLoadingModule || !exam || !module || !course) {
     return (
@@ -87,11 +94,15 @@ const ExamPage = () => {
 
       setShowScore(true)
 
+      const endTime = new Date()
+
       await updateExam({
         examId: examId!,
         body: {
           finished: true,
-          score: newScore
+          score: newScore,
+          startTime: startTimeRef.current,
+          endTime
         }
       })
 

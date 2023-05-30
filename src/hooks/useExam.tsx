@@ -27,7 +27,13 @@ const useExam = (examId: string) => {
     await getExam()
   }
 
-  const updateExam = async ({ examId, body }: { examId: string; body: { finished: boolean; score: number } }) => {
+  const updateExam = async ({
+    examId,
+    body
+  }: {
+    examId: string
+    body: { finished: boolean; score: number; startTime?: any; endTime?: any }
+  }) => {
     try {
       setIsLoading(true)
 
