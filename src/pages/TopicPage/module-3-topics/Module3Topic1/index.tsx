@@ -40,17 +40,25 @@ const Module3Topic1: React.FC<Props> = ({ hasEnterAr, onFinish, setHasEnterAr, o
         </div>
         <div>
           For instance, if you need to calculate the combined cost of purchasing three items, you would sum up the price
-          of each item. In programming, this addition is performed using the "+" operator. Likewise, to ascertain the
-          average of three numbers, you would divide their sum by the total count of items. In this case, programming
-          employs the "/" operator for division.
+          of each item. In programming, this addition is performed using the "+" operator. For example, 2 + 3 would give
+          the result 5.
+        </div>
+        <div>
+          Likewise, to ascertain the average of three numbers, you would divide their sum by the total count of items.
+          In this case, programming employs the "/" operator for division. For example, (10 + 15 + 20) / 3 would give
+          the result 15.
         </div>
         <div>
           Besides the basic arithmetic operations described above, programming introduces a unique operation called
-          modulo. This operation, symbolized by the "%" sign, is utilized to calculate the remainder resulting from a
+          modulo. This operation, symbolized by the "%" sign, is utilized to compute the remainder resulting from a
           division operation.
         </div>
         <div>
-          It is crucial to note that arithmetic operations in programming go beyond basic calculations to form part of
+          Take an example where you divide 10 by 3; the result is 3 with a surplus of 1. The modulo operator in
+          programming enables you to acquire this remainder. Hence, 10 % 3 would give the result 1.
+        </div>
+        <div>
+          It's crucial to note that arithmetic operations in programming go beyond basic calculations to form part of
           more intricate computations and algorithms. These operations are a crucial component of programming, and they
           feature in nearly every software application.
         </div>
