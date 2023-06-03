@@ -4,7 +4,7 @@ import ProfileOutlinedIcon from '../assets/ProfileOutlinedIcon'
 import HomeOutlinedIcon from '../assets/HomeOutlinedIcon'
 import HomeFilledIcon from '../assets/HomeFilledIcon'
 import { useUserContext } from '../context/UserContext'
-
+//
 const BottomNavbar = () => {
   const location = useLocation()
   const navigate = useNavigate()
